@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+  "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="false" enhancementEnabled="true"
+		lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="512"
+		maxSessions="256" maxTransactions="256" useStatementNamespaces="true"
+		defaultStatementTimeout="60" statementCachingEnabled="true"
+		classInfoCacheEnabled="true" />
+	<!-- 每个表对应的SqlMap.xml文件配置 -->
+	<sqlMap resource="context/datasource/sqlmap/account_login_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/account_info_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/life_track_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/login_history_SqlMap.xml" />
+</sqlMapConfig>

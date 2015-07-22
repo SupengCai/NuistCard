@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <style type="text/css">
+            body, html, #l-map {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                hidden;
+                margin:
+                0;
+            }
+        </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=fByIyk938Uo4I8lOYd79Afc5">
+        </script>
+        <title>显示common地图</title>
+    </head>
+    <body>
+        <div id="l-map">
+        </div>
+    </body>>
+</html>
+<script type="text/javascript">
+    var opts = {
+        width: 250, // 信息窗口宽度
+        height: 100, // 信息窗口高度
+        title: "Hello" // 信息窗口标题
+    }
+    var infoWindow = new BMap.InfoWindow("World", opts); // 创建信息窗口对象
+    //初始化地图
+    var map = new BMap.Map("l-map");
+    var point = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(point, 15);
+    map.enableScrollWheelZoom();
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.OverviewMapControl());
+    map.setCurrentCity("北京");
+    var marker = new BMap.Marker(point); // 创建标注
+    map.addOverlay(marker); // 将标注添加到地图中
+    marker.addEventListener("click", function() {
+        map.openInfoWindow(infoWin, point); // 打开信息窗口
+    });
+    var polyline = new BMap.Polyline([new BMap.Point(116.399, 39.910), new BMap.Point(116.405, 39.920)], {
+        strokeColor: "blue",
+        strokeWeight: 6,
+        strokeOpacity: 0.5
+    });
+    map.addOverlay(polyline);
+
+
+
+    //拼接infowindow内容字串
+    var html = [];
+    html.push('<span style="font-size:12px">属性信息: </span><br/>');
+    html.push('<table border="0" cellpadding="1" cellspacing="1" >');
+    html.push('  <tr>');
+    html.push('      <td align="left" class="common">名 称：</td>');
+    html.push('      <td colspan="2"><input type="text" maxlength="50" size="18"  id="txtName"></td>');
+    html.push('	     <td valign="top"><span class="star">*</span></td>');
+    html.push('  </tr>');
+    html.push('  <tr>');
+    html.push('      <td  align="left" class="common">电 话：</td>');
+    html.push('      <td colspan="2"><input type="text" maxlength="30" size="18"  id="txtTel"></td>');
+    html.push('	     <td valign="top"><span class="star">*</span></td>');
+    html.push('  </tr>');
+    html.push('  <tr>');
+    html.push('      <td  align="left" class="common">地 址：</td>');
+    html.push('      <td  colspan="2"><input type="text" maxlength="50" size="18"  id="txtAddr"></td>');
+    html.push('	     <td valign="top"><span class="star">*</span></td>');
+    html.push('  </tr>');
+    html.push('  <tr>');
+    html.push('      <td align="left" class="common">描 述：</td>');
+    html.push('      <td colspan="2"><textarea rows="2" cols="15"  id="areaDesc"></textarea></td>');
+    html.push('	     <td valign="top"></td>');
+    html.push('  </tr>');
+    html.push('  <tr>');
+    html.push('	     <td  align="center" colspan="3">');
+    html.push('          <input type="button" name="btnOK"  onclick="fnOK()" value="确定">&nbsp;&nbsp;');
+    html.push('		     <input type="button" name="btnClear" onclick="fnClear();" value="重填">');
+    html.push('	     </td>');
+    html.push('  </tr>');
+    html.push('</table>');
+
+    var infoWin = new BMap.InfoWindow(html.join(""), {
+        offset: new BMap.Size(0, -10)
+    });
+    var curMkr = null; // 记录当前添加的Mkr
+    var mkrTool = new BMapLib.MarkerTool(map, {
+        autoClose: true
+    });
+    mkrTool.addEventListener("markend", function(evt) {
+        var mkr = evt.marker;
+        mkr.openInfoWindow(infoWin);
+        curMkr = mkr;
+    });
+
+    //打开样式面板
+    function openStylePnl() {
+        document.getElementById("divStyle").style.display = "block";
+    }
+
+    //选择样式
+    function selectStyle(index) {
+        mkrTool.open(); //打开工具
+        var icon = BMapLib.MarkerTool.SYS_ICONS[index]; //设置工具样式，使用系统提供的样式BMapLib.MarkerTool.SYS_ICONS[0] -- BMapLib.MarkerTool.SYS_ICONS[23]
+        mkrTool.setIcon(icon);
+        document.getElementById("divStyle").style.display = "none";
+    }
+
+    //提交数据
+    function fnOK() {
+        var name = encodeHTML(document.getElementById("txtName").value);
+        var tel = encodeHTML(document.getElementById("txtTel").value);
+        var addr = encodeHTML(document.getElementById("txtAddr").value);
+        var desc = encodeHTML(document.getElementById("areaDesc").value);
+
+        if (!name || !tel || !addr) {
+            alert("星号字段必须填写");
+            return;
+        }
+
+        if (curMkr) {
+            //设置label
+            var lbl = new BMap.Label(name, {
+                offset: new BMap.Size(1, 1)
+            });
+            lbl.setStyle({
+                border: "solid 1px gray"
+            });
+            curMkr.setLabel(lbl);
+
+            //设置title
+            var title = "电话: " + tel + "\n\r" + "地址: " + addr + "\n\r" + "描述: " + desc;
+            curMkr.setTitle(title);
+        }
+        if (infoWin.isOpen()) {
+            map.closeInfoWindow();
+        }
+
+        //在此用户可将数据提交到后台数据库中
+    }
+
+    //输入校验
+    function encodeHTML(a) {
+        return a.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    //重填数据
+    function fnClear() {
+        document.getElementById("txtName").value = "";
+        document.getElementById("txtTel").value = "";
+        document.getElementById("txtAddr").value = "";
+        document.getElementById("areaDesc").value = "";
+    }
+</script>

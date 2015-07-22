@@ -1,0 +1,26 @@
+.jumbotron-white {
+	background-color: #ffffff;
+}
+
+.modal-top {
+	top: 25%;
+}
+
+.font-white {
+	color: #FFFFFF
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #FFFFFF;
+}
+
+.center {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.right {
+	float: right;
+	text-align: right;
+}

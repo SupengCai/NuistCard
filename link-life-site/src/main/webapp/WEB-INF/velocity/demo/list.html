@@ -1,0 +1,20 @@
+<!-- 下面这个layout的设置是可以省略的，因为配置中已经将其设置为默认。如果使用其它的布局就使用下面的set方式更改 -->
+#set($layout = "default.html")
+<!-- 下面是设置使用的布局页面default.html中的变量，如果这些变量已经在controller中指定，则这里也可以省略 -->
+#set($title="这里是标题啊~")
+#set($seo_kwd="这里是关键词哦！")
+<!-- 下面是该页面需要单独引用的页面片段，如果不需要，则可以省略！ -->
+#parse("layout/_top.html")
+<!-- 下面是页面的正文内容 -->
+	<table border="1" cellpadding="0" cellspacing="0" class="tableV">
+		#foreach($demo in $list)
+      <tr>
+        <th>类型:</th>
+        <td>
+          $!demo.MATCH_TYPE<br>
+        </td>
+		<th>内容:</th>
+        <td>$!demo.SOURCE_VALUE</td>
+      </tr>
+	  #end
+	 </table>

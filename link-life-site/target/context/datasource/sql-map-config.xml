@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+  "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="false" enhancementEnabled="true"
+		lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="512"
+		maxSessions="256" maxTransactions="256" useStatementNamespaces="true"
+		defaultStatementTimeout="60" statementCachingEnabled="true"
+		classInfoCacheEnabled="true" />
+	<!-- 每个表对应的SqlMap.xml文件配置 -->
+	<sqlMap resource="context/datasource/sqlmap/account_login_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/account_info_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/account_suggest_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/life_track_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/login_history_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/search_history_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_login_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_info_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_login_history_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_suggest_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_trade_history_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_recharge_history_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_score_history_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_shop_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_course_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_class_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/daily_check_account_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/daily_check_issues_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/daily_check_update_SqlMap.xml" />
+</sqlMapConfig>

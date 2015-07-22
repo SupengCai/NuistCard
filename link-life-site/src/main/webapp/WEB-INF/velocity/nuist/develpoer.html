@@ -1,0 +1,99 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+
+
+<div class="col-lg-6">
+	<div role="tabpanel">
+		<ul class="nav nav-tabs huge" role="tablist">
+			<li id="li-amount" role="presentation" class="active"><a
+				href="#developer" aria-controls="home" role="tab" data-toggle="tab"><span
+					class="glyphicon glyphicon-tree-deciduous" aria-hidden="true">&nbsp</span>我</a></li>
+			<li id="li-area" role="presentation"><a href="#wechat"
+				aria-controls="profile" role="tab" data-toggle="tab"><span
+					class="glyphicon glyphicon-qrcode" aria-hidden="true">&nbsp</span>微信</a></li>
+			<li id="li-area" role="presentation"><a href="#wechatPublic"
+				aria-controls="profile" role="tab" data-toggle="tab"><span
+					class="glyphicon glyphicon-bullhorn" aria-hidden="true">&nbsp</span>公众号</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="developer">
+				<table class="table table-hover">
+					<tbody>
+					<thead>
+						<tr>
+							<th><h4>
+									关于开发者
+									<h4></th>
+						</tr>
+					</thead>
+					<tr>
+						<td><h4>姓名</h4></td>
+						<td><h4>蔡苏鹏</h4></td>
+					</tr>
+					<tr>
+						<td><h4>学校</h4></td>
+						<td><h4>南京信息工程大学</h4></td>
+					</tr>
+					<tr>
+						<td><h4>专业</h4></td>
+						<td><h4>电子与通信工程</h4></td>
+					</tr>
+					<tr>
+						<td><h4>邮箱</h4></td>
+						<td><h4>supeng_cai2014@163.com</h4></td>
+					</tr>
+					</tbody>
+				</table>
+				<table class="table table-hover">
+					<tbody>
+					<thead>
+						<tr>
+							<th><h4>
+									关于本站
+									<h4></th>
+						</tr>
+					</thead>
+					<tr>
+						<td><h4>本站旨在对个人所学技术进行实践及积累。同时临近毕业，更是希望能够发挥个人所长，为仍在校的学生做些有那么一点点用的页面功能。</h4></td>
+					</tr>
+					</tbody>
+				</table>
+				<div class="form-group">
+					<a class="btn btn-success btn-lg btn-block" href="index">返 回 主
+						页</a>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="wechat">
+				<div class="col-lg-12 col-md-6">
+					<div class="row">
+						<div class="col-lg-12">
+							<img class="img-rounded" alt="80x80"
+								src="../assets/image/QR/developer.jpg"
+								style="width: 300px; height: 400px;">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="wechatPublic">
+				<div class="col-lg-12 col-md-6">
+					<div class="row">
+						<div class="col-lg-12">
+							<img class="img-rounded" alt="80x80"
+								src="../assets/image/QR/wechatpublic.jpg"
+								style="width: 300px; height: 300px;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/panel-->
+
+
+
+
+#define($js) #end

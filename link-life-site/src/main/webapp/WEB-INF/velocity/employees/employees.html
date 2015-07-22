@@ -1,0 +1,39 @@
+<!-- 下面这个layout的设置是可以省略的，因为配置中已经将其设置为默认。如果使用其它的布局就使用下面的set方式更改 --> #set($layout = "default.html")<!-- 下面是设置使用的布局页面default.html中的变量，如果这些变量已经在controller中指定，则这里也可以省略 --> #set($title="Made-In-China.com")
+#set($seo_kwd="员工信息")<!-- 下面是该页面需要单独引用的页面片段，如果不需要，则可以省略！ --> #parse("layout/_top.html")<!-- 下面是页面的正文内容 -->
+<script type="text/javascript" src="/script/jquery-1.4.2.js">
+</script>
+<script type="text/javascript" src="/script/jquery.validate.js">
+</script>
+<script type="text/javascript" src="/script/edit-validate.js">
+</script>
+<script type="text/javascript">
+
+</script>
+<div>
+    <a>个人信息</a>
+    <a>部门信息</a>
+    <a>职位信息</a>
+    <br>
+    <br>
+    <form id="form-employee-info" action="editinfo" method="post">
+        工号:<input id="emplId" name="emplId" type="text" value=$!employee.emplId readonly="true">
+        <br>
+        姓名:<input id="emplName" name="emplName" type="text" value=$!employee.emplName>
+        <br>
+        性別:<input id="emplSex" name="emplSex" type="text" value=#if($!employee.emplSex==1) 男
+#else
+ 女
+#end>
+        <br>
+        工资:<input id="emplSalary" name="emplSalary" type="text" value=$!employee.emplSalary>
+        <br>
+        <button type="submit">
+            修改
+        </button>
+        <br>
+		<label>$!edit_error</label>
+    </form>
+</div>
+<br>
+<br>
+#parse("layout/_footer.html")

@@ -1,0 +1,89 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div role="tabpanel">
+
+				<ul class="nav nav-tabs huge" role="tablist">
+					<li role="presentation" class="active"><a href="#cardlost"
+						aria-controls="home" role="tab" data-toggle="tab"><span
+							class="glyphicon glyphicon-link" aria-hidden="true">&nbsp</span>挂失</a></li>
+					<li role="presentation"><a href="#cardunlost"
+						aria-controls="profile" role="tab" data-toggle="tab"><span
+							class="glyphicon glyphicon-barcode" aria-hidden="true">&nbsp</span>解除挂失</a></li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="cardlost">
+						<form action="" id="CardLostForm" method="post">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tbody>
+										<tr>
+											<td><h4>姓名</h4></td>
+											<td><h4>$!username</h4></td>
+										</tr>
+										<tr>
+											<td><h4>学号</h4></td>
+											<td><h4>$!usernumber</h4></td>
+										</tr>
+										<tr>
+											<td><h4>查询密码</h4></td>
+											<td><input name="pwdLost" id="pwdLost" type="password"
+												class="form-control input-lg" placeholder="查询密码"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</form>
+						<div class="form-group">
+							<button id="btnCardLost" class="btn btn-lg btn-primary btn-block"
+								type="button">确 认 挂 失</button>
+							<a class="btn btn-success btn-lg btn-block" href="index">返 回
+								主 页</a>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="cardunlost">
+						<form action="" id="CardUnlostForm" method="post">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tbody>
+										<tr>
+											<td><h4>学号</h4></td>
+											<td><input name="CardNo" id="CardNo" type="text"
+												class="form-control input-lg" placeholder="学号"></td>
+										</tr>
+										<tr>
+											<td><h4>查询密码</h4></td>
+											<td><input name="pwdUnlost" id="pwdUnlost"
+												type="password" class="form-control input-lg"
+												placeholder="查询密码"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</form>
+						<div class="form-group">
+							<button id="btnCardUnlost"
+								class="btn btn-lg btn-primary btn-block" type="button">解
+								除 挂 失</button>
+							<a class="btn btn-success btn-lg btn-block" href="index">返 回
+								主 页</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/panel-->
+
+#define($js)
+<script src="../assets/js/jquery.validate.js"></script>
+<script src="../assets/js/nuist/base64.min.js"></script>
+<script src="../assets/js/nuist/cardlost.min.js"></script>
+#end

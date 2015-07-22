@@ -1,0 +1,237 @@
+﻿#set($layout = "layout/nuist/_layout.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+<div class="col-lg-12 page-header">
+	<div class="row">
+		<div class="col-lg-12">
+			<img class="img-rounded" alt="80x80"
+				src="../assets/image/ico/nuist/banner.png"
+				style="width: 350px; height: 80px;">
+		</div>
+	</div>
+</div>
+<div class="col-lg-12 col-md-6">
+	<div class="row">
+		<div class="col-lg-12">
+			<ol class="breadcrumb">
+				<li class="active"><span class="glyphicon glyphicon-cloud"
+					aria-hidden="true">&nbsp</span>一卡通在线平台</li>
+			</ol>
+		</div>
+	</div>
+</div>
+#if($firstPage)
+<div class="col-lg-12 col-md-6">
+	<div id="row-ad" class="row">
+		<div class="col-lg-12">
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				温馨提示：手机用户可点击右上角按钮
+			</div>
+		</div>
+	</div>
+</div>
+#else
+<div class="col-lg-12 col-md-6">
+	<div id="row-ad" class="row">
+		<div class="col-lg-12">
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				公告：关注南信一卡通<a href="wechatQR" class="alert-link">微信公众号</a>登陆更方便，同时可获取更多网站相关内容，也可访问<a
+					href="http://ucard.nuist.edu.cn:8070/Home/Index" class="alert-link">官方网站</a>获取服务。
+			</div>
+		</div>
+	</div>
+</div>
+#end #if(!$signined)
+<div class="col-lg-5 col-md-6">
+	<div id="btn-signin" class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-log-in huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">登录</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+#end
+<div class="col-lg-5 col-md-6">
+	<div id="btn-recharge" class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-credit-card huge"
+						aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">一卡通充值</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="col-lg-5 col-md-6">
+	<div id="btn-history" class="panel panel-green">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-list-alt huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">我的账单</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="col-lg-5 col-md-6">
+	<div id="btn-ranklist" class="panel panel-yellow">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-list huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">排行榜</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="col-lg-5 col-md-6">
+	<div id="btn-score" class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-calendar huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">成绩查询</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="col-lg-5 col-md-6">
+	<div id="btn-changepwd" class="panel panel-green">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-briefcase huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">修改密码</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="col-lg-5 col-md-6">
+	<div id="btn-cardlost" class="panel panel-yellow">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-link huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">挂失操作</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="col-lg-5 col-md-6">
+	<div id="btn-suggest" class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-envelope huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">意见反馈</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+#if($signined)
+<div class="col-lg-5 col-md-6">
+	<div id="btn-signout" class="panel panel-green">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-log-out huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">切换用户</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+#end #define($js)
+<script src="../assets/js/jquery.validate.js"></script>
+<script src="../assets/js/nuist/base64.min.js"></script>
+<script src="../assets/js/nuist/login.min.js"></script>
+#end
+

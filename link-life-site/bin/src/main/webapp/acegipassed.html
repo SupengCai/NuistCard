@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Made-In-China.com</title>
+    </head>
+    <body>
+        <form action="/login" id="login-form" method="post">
+            <h3>Passed员工登录 (Login)</h3>
+            <label>
+                账号
+            </label>
+            <input type="text" name="j_username" id="j_username">
+            <br>
+            <label>
+                密码
+            </label>
+            <input type="password" name="j_password" id="j_password">
+            <br>
+            <button type="submit">
+                登录 (login)
+            </button>
+        </form>
+
+        <script type="text/javascript" src="script/jquery-1.4.2.js">
+        </script>
+        <script type="text/javascript" src="script/jquery.validate.js">
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#login-form").validate({
+                    onsubmit: true,
+                    onkeyup: false,
+                    onfocusout: false,
+                    onclick: false,
+                    rules: {
+                        empl_id: {
+                            required: true,
+                            rangelength: [1, 4]
+                        },
+                        empl_psw: {
+                            required: true,
+                            rangelength: [3, 10]
+                        }
+                    },
+                    messages: {
+                        empl_id: {
+                            required: "请输入账号 (id is required)",
+                            rangelength: "账号长度不合法 (illegal id length)"
+                        },
+                        empl_psw: {
+                            required: "请输入密码 (password is required)",
+                            rangelength: "密码长度不合法 (illegal password length)"
+                        }
+                    },
+                    errorPlacement: function(error) {
+                        alert(error.text());
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

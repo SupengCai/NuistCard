@@ -1,0 +1,27 @@
+﻿#set($layout = "layout/dailycheck/layout.html") #define($css)
+<link href="../assets/css/dailycheck/signin.css" rel="stylesheet">
+#end
+
+
+<div class="container">
+
+	<form class="form-signin" action="signin" method="post">
+		<h2 class="form-signin-heading">Daily check sign in</h2>
+		<label for="inputEmail" class="sr-only">Account</label> <input
+			type="text" id="account" name="account" class="form-control"
+			placeholder="Account" required autofocus> <label
+			for="inputPassword" class="sr-only">Password</label> <input
+			type="password" id="password" name="password" class="form-control"
+			placeholder="Password" required>
+		<div class="checkbox">
+			<label> <input type="checkbox" value="true" name="rememberme">
+				Remember me
+			</label> or <a href="register">Register</a>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
+			in</button>
+	</form>
+
+</div>
+<!-- /container -->
+

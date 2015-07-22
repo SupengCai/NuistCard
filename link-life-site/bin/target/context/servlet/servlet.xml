@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:component-scan base-package="com.linklife.controller" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<mvc:annotation-driven />
+
+	<!-- 静�?�资源映�? -->
+	<mvc:default-servlet-handler />
+
+	<!-- 启动AspectJ支持 -->
+	<aop:aspectj-autoproxy />
+
+
+
+	<!-- velocity的模板渲染类 -->
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
+		<property name="configLocation"
+			value="classpath:/context/velocity/velocity.properties" />
+	</bean>
+	<!-- View层定�? Velocity-Sample <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="suffix" value=".html" /> <property name="contentType" value="text/html"
+		/> </bean> -->
+	<!-- View层定�? -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<!-- 在没有扩展名时即: "/user/1" 时的默认展现形式 -->
+		<property name="defaultContentType" value="text/html" />
+		<!-- 设置为true以忽略对Accept Header的支�? -->
+		<property name="ignoreAcceptHeader" value="true" />
+		<!-- 扩展名至mimeType的映�?,�? /user.json => application/json -->
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<!-- for application/json -->
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+				<!-- for application/xml -->
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<property name="marshaller">
+						<bean class="org.springframework.oxm.xstream.XStreamMarshaller" />
+					</property>
+				</bean>
+			</list>
+		</property>
+
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean
+					class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+					<property name="contentType" value="text/html;charset=UTF-8" />
+					<property name="suffix" value=".html" />
+					<property name="viewClass"
+						value="org.springframework.web.servlet.view.velocity.VelocityToolboxView" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- SpringMVC上传文件，MultipartResolver处理�? -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 指定�?上传文件的�?�大小不能超�?200000KB。注意maxUploadSize属�?�的限制不是针对单个文件，�?�是�?有文件的容量之和 -->
+		<property name="maxUploadSize" value="200000000" />
+	</bean>
+
+	<!-- 出错页面统一处理 -->
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="public/error" />
+	</bean>
+</beans>

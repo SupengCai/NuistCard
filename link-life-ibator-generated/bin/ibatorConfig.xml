@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ibatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
+
+<ibatorConfiguration >
+       <classPathEntry location="C:\Development\maven\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar" />  
+       <ibatorContext id="contextCoreModel" >
+               <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                 connectionURL="jdbc:mysql://localhost:3306/linklife" userId="root" password="admin" />
+               <javaModelGenerator targetPackage="com.linklife.domain.ibator" targetProject="link-life-ibator-generated" />
+               <sqlMapGenerator targetPackage="context.datasource.sqlmap" targetProject="link-life-ibator-generated" />
+               <daoGenerator targetPackage="com.linklife.dao" targetProject="link-life-ibator-generated" type="GENERIC-CI" />
+               <table schema="linklife" tableName="login_history"  domainObjectName="loginHistory">
+                         <generatedKey column="account_id" sqlStatement="MySql" identity="true"/>
+               </table>
+              <!--<table schema="linklife" tableName="account_login"  domainObjectName="accountLogin">
+                         <generatedKey column="account_id" sqlStatement="MySql" identity="true"/>
+               </table>
+               <table schema="linklife" tableName="life_track"  domainObjectName="lifeTrack">
+                         <generatedKey column="track_id" sqlStatement="MySql" identity="true"/>
+               </table>  --> 
+       </ibatorContext>
+</ibatorConfiguration>  

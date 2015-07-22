@@ -1,0 +1,74 @@
+﻿#set($layout = "layout/_layout.html") #define($css)
+<link type="text/css" rel="stylesheet"
+	href="../assets/css/map/baidumap.css">
+#end
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Project name</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<form class="navbar-form navbar-right" role="form">
+				<div class="form-group">
+					<input type="text" placeholder="Email" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="password" placeholder="Password" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-success">Sign in</button>
+			</form>
+		</div>
+		<!--/.navbar-collapse -->
+	</div>
+</nav>
+
+<div id="life-map"></div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Project name</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<form class="navbar-form navbar-right" role="form">
+				<div class="form-group">
+					<input type="text" placeholder="Email" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="password" placeholder="Password" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-success">Sign in</button>
+			</form>
+		</div>
+		<!--/.navbar-collapse -->
+	</div>
+</nav>
+
+#define($js)
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?type=quick&ak=BV4fuXdUHi3FQLqY44XBNaZG&v=1.0"></script>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("life-map"); // 创建Map实例
+	var point = new BMap.Point(116.404, 39.915); // 创建点坐标
+	map.centerAndZoom(point, 15); // 初始化地图,设置中心点坐标和地图级别。
+	map.addControl(new BMap.ZoomControl()); //添加地图缩放控件
+</script>
+
+#end
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<!-- <link href="../assets/css/bootstrap.min.css" rel="stylesheet"> -->
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+#if($common)
+<link type="text/css" rel="stylesheet" href="assets/css/input.css">
+#else
+<link type="text/css" rel="stylesheet" href="../assets/css/input.css">
+#end $!css
+<title>Link-Life 连接生活</title>
+</head>
+<body>
+	#if($top)
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				#if($common) <a class="navbar-brand" href="index">Link-Life</a>
+				#else <a class="navbar-brand" href="../index">Link-Life</a> #end
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				#if($name||$friendslist)
+				<div class="form-group">
+					<img class="img-rounded" alt="80x80"
+						src="assets/image/ico/2222@qq.com.ico"
+						style="width: 80px; height: 80px;">
+					<div class="right white">
+						<h3>$!name</h3>
+						<ul style="list-style-type: none">
+							<li class="font">生日:$!birthday</li>
+							<li class="font">城市:$!city</li>
+							<li class="font">粉丝:111</li>
+							<li class="font">关注:222</li>
+						</ul>
+					</div>
+				</div>
+				<div class="form-group">
+					#if($common) <a class="btn btn-primary" href="account/index">我的主页</a>
+					<a class="btn btn-success" href="j_acegi_logout">注销</a> #else <a
+						class="btn btn-primary" href="index">我的主页</a> <a
+						class="btn btn-success" href="../j_acegi_logout">注销</a> #end
+				</div>
+				#else
+				<form id="form-login" class="navbar-form navbar-right" role="form"
+					action="login" method="post">
+					<div class="form-group">
+						<input name="j_username" id="j_username" type="email"
+							class="form-control input-lg" placeholder="邮箱">
+					</div>
+					<div class="form-group">
+						<input name="j_password" id="j_password" type="password"
+							class="form-control input-lg" placeholder="密码">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-lg btn-primary btn-block" type="submit">登
+							录</button>
+					</div>
+					<div class="form-group">
+						<a class="btn btn-lg btn-success btn-block" href="regist">注册</a>
+					</div>
+				</form>
+				#end
+			</div>
+		</div>
+	</nav>
+	#end $screen_content #if($bottom)
+	<nav class="navbar navbar-inverse navbar-fixed-bottom"
+		role="navigation">
+		<div class="container">
+			<div id="navbar" class="navbar-collapse collapsed">
+				<div id="toolbar" class="btn-toolbar" role="toolbar">
+					<div class="input-group dropup  input-group-lg">
+						<input id="keyword" class="form-control" placeholder="分享我的位置"
+							type="text">
+						<ul id="suggestionlist" class="dropdown-menu" role="menu"></ul>
+						<div class="input-group-btn dropup">
+							<button id="search" type="button" class="btn btn-default">搜索</button>
+							<button type="button" class="btn btn-success dropdown-toggle"
+								data-toggle="dropdown">
+								功能 <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								#if($common)
+								<li><a href="account/list">好友动态</a></li>
+								<li class="divider"></li>
+								<li><a href="index">刷新</a></li>
+								<li class="divider"></li>
+								<li><a href="nuist/index">南信一卡通</a></li>
+								<li class="divider"></li>
+								<li><a href="suggest">联系开发者</a></li> #else
+								<li><a href="list">好友动态</a></li>
+								<li class="divider"></li>
+								<li><a href="../index">刷新</a></li>
+								<li class="divider"></li>
+								<li><a href="../nuist/index">南信一卡通</a></li>
+								<li class="divider"></li>
+								<li><a href="../suggest">联系开发者</a></li> #end
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</nav>
+	#end
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script
+		src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<!-- <script src="../assets/js/jquery-2.1.1.min.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script> -->
+	<script src="../assets/js/basejs.js"></script>
+	$!js
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?32dd7b0f0ec76f6c6fe6738469fe066a";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</body>
+</html>
+

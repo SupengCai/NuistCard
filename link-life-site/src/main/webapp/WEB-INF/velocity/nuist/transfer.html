@@ -1,0 +1,41 @@
+﻿#set($layout = "layout/nuist/_layout.html") #define($css)
+<link href="../assets/css/signin.css" rel="stylesheet">
+#end
+
+<div class="container">
+	<img class="img-rounded" alt="80x80"
+		src="../assets/image/ico/nuist/banner.png"
+		style="width: 340px; height: 80px;">
+	<div class="jumbotron jumbotron-white">
+		<h3>一卡通充值</h3>
+		<form Areas="SynCard" action="/SynCard/Manage/TransferPost"
+			id="TransferForm" method="post">
+			<input type="hidden" id="FromCard" name="FromCard" value="bcard" />
+			<select type="hidden" id="ToCard" name="ToCard">
+				<option value="card">校园卡</option>
+			</select>
+
+			<div class="page-header">
+				<div class="form-group">
+					<input name="Amount" id="txtAmount" type="text"
+						class="form-control input-lg" placeholder="请输入转入金额">
+				</div>
+				<div class="form-group">
+					<input id="Password" type="password"
+						class="form-control input-lg" placeholder="请输入校园卡查询密码">
+				</div>
+			</div>
+			<button id="btnTransfer" class="btn btn-lg btn-primary btn-block"
+				type="button">充值</button>
+			<a href="index" class="btn btn-success btn-lg btn-block">返回</a>
+		</form>
+	</div>
+</div>
+
+#define($js)
+<script src="../assets/js/jquery.validate.js"></script>
+<script src="../assets/js/nuist/base64.min.js"></script>
+<script src="../assets/js/nuist/jquery.form.js"></script>
+<script src="../assets/js/nuist/recharge.min.js"></script>
+#end
+

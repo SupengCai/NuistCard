@@ -1,0 +1,227 @@
+﻿##includeJS
+##生成引入js文件的<script>元素
+#macro(includeJs $filenames)
+#if(!$filenames.size())
+	#set($filenames = [$filenames])
+#end
+#foreach($name in $filenames)
+#if($name.startsWith("/"))
+<script type="text/javascript" src="${name}.js"></script>
+#else
+<script type="text/javascript" src="/script/${name}.js"></script>
+#end
+#end
+#end
+
+##csrfInput
+##生成含csrf token的hidden域
+#macro(csrfInput)
+<input name="$field.in("com.focustech.web.interceptor.CsrfProtectInterceptor").PARAM_TOKEN_NAME" value="$cookieMap.csrfToken" type="hidden"/>
+#end
+
+##csrfJson
+##生成含csrf token的json对象，某些特殊情况下会需要
+#macro(csrfJson)
+{"$field.in("com.focustech.web.interceptor.CsrfProtectInterceptor").PARAM_TOKEN_NAME":"$cookieMap.csrfToken"}
+#end
+
+##errorFor
+##将domain对象中的errors信息显示出来，用于表单校验的展示
+#macro(errorFor $obj)
+#set($errors = $obj.errors)
+#if($errors.size()>0)
+	<div class="allWrong">
+    <p>你还有部分内容没有填写正确，请修改</p>
+      <ul>
+    	 #foreach($err in $errors)
+			  <li>$err</li>
+		   #end
+			</ul>
+	</div>
+#end
+#end
+
+#macro(errorMsg $exp)
+	#ifnotnull($exp.message)
+	<div class="allWrong">
+      <ul>
+			  <li>$exp.message</li>
+			</ul>
+	</div>
+  #end
+#end
+
+#macro(flashOk)
+	#ifnotnull($cookieMap.flashOk)
+  <div class="allRight">
+    $cookieMap.flashOk
+  </div>
+  #end
+#end
+
+#macro(flashError)
+	#ifnotnull($cookieMap.flashError)
+  <div class="allWrong">
+    $cookieMap.flashError
+  </div>
+  #end
+#end
+
+
+##radioGroup
+##根据参数展示一组radio
+##param $name raido的name
+##param $raidos 所有选项，应该是一个数组，每个数组元素是对象，拥有value和text属性
+##param $chose 默认应该选中的value值，应该是一个字符串，可以为空，此时不选中任何radio
+#macro(radioGroup $name $radios $chose)
+    #foreach($rad in $radios)
+        <label>
+        <input type="radio" id="${name}_${rad.value}" name="$name" value="$rad.value" #if("$chose" == "$rad.value") checked="checked" #end #if($rad.disable) disabled="disabled" #end />
+		$rad.text
+        </label>
+    #end
+#end
+
+##checkGroup
+##根据参数展示一组checkbox
+##param $name checkbox的name属性
+##param $checkboxs包含选择项集合
+##param $chose 默认应该选中的value值组，应该是一个字符串，由逗号隔开，可以为空，此时不选中任何checkbox
+#macro(checkGroup $name $checkboxs $chose)
+	#set($choseArr = $chose.split(","))
+	#foreach($check in $checkboxs)
+    	<label>
+    	<input type="checkbox" id="${name}_${check.value}" name="$name" value="$check.value" #foreach($val in $choseArr) #if("$check.value" == "$val") checked="checked" #end #end #if($check.disable) disabled="disabled" #end />
+		$check.text
+		</label>
+	#end
+	<input type="hidden" name="$name" value="" />
+#end
+
+##selectTag
+##根据参数展示一个下拉列表框
+##param $name select的name属性
+##param $options包含选择项集合
+##param $chose 默认应该选中的value值，应该是一个字符串，可以为空，此时默认第一项会被选中
+##param $selectTagClass 指定select的class，如果留空，则默认为w3
+#macro(selectTag $name $options $chose $selectTagClass)
+	<select name="$name" id="$name" class="$display.alt($selectTagClass,"w3")">
+		#foreach($option in $options)
+		<option value="$option.value" #if("$chose"=="$option.value") selected="selected" #end>$option.text</option>
+		#end
+	</select>
+#end
+
+##catePropsSelect
+##根据目录对应的属性组生成一组select
+##param $name 所有select元素公用的id
+##param $data 包含所有属性及属性值列表的变量，在JAVA应当是这样一个对象HashMap<Param, List<Param>>
+##param $selected 已经选择的值，直接将数据库中的值传来即可，形如23423_234,342_34223,234_3444
+#macro(catePropsSelect $name $data $selected $propOtherMap)
+	#set($selectedArr = $selected.split(","))
+	#foreach($prop in $data.keySet())
+		<tr class="cateProps">
+        <td>${prop.text}：</td>
+		<td>
+			#set($lst = $data[$prop])
+			#if($foreach.count <= $selectedArr.size())
+				#set($selectVal = $selectedArr[$foreach.index])
+			#else
+				#set($selectVal = 0)
+			#end
+			<select name="$name" id="${name}_${foreach.count}" class="with-other-option" data-otheroption="input[prop=${name}_${prop.value}]">
+				<option value="">--请选择--</option>
+        		#foreach($option in $lst)
+        		<option value="${prop.value}_${option.value}"#if($selectVal == "${prop.value}_${option.value}")selected="selected"#end>$option.text</option>
+        		#end
+        	</select>
+        	<input id="${name}_${foreach.count}_${prop.value}" class="text w3" name="${name}OtherValues" prop="${name}_${prop.value}" type="text" style="display: none;" value="$!esc.html($propOtherMap.get(${prop.value}))" maxlength="50"/>
+			<input name="${name}OtherKeys" type="hidden" value="${prop.value}"/>
+		</td>
+		</tr>
+	#end
+#end
+
+##seo
+##生成seo后的url
+##param $url 需要被seo转换的Url
+#macro(seo $url)$response.encodeURL($url)#end
+
+##rate
+##生成评价的HTML结构，“星星”
+##param $curr 选中的评分值，直接将数据库中的数字传过来（目前是10,20等），如果没选中传个负数（-1最好）
+##param $rateId 容器的HTML id属性
+#macro(rate $currVal $rateId)
+	##先转换成0,1,2
+	#if($currVal == $field.RATE_SCORE_BAD)
+		#set($curr = 0)
+	#elseif($currVal == $field.RATE_SCORE_SO)
+		#set($curr = 1)
+	#elseif($currVal == $field.RATE_SCORE_GOOD)
+		#set($curr = 2)
+	#elseif($currVal == $field.RATE_SCORE_EXCELLENT)
+		#set($curr = 3)
+	#else
+		#set($curr = -1)
+	#end
+	
+	#if($curr == 3)
+		#set($rateAllClass = "all")
+	#end
+	<ul id="$!rateId" data-rateval="$curr">
+		#foreach($i in [0..3])
+  		#if($i <= $curr)
+  		#set($rateCurrClass = "current")
+  		#else
+  		#set($rateCurrClass = "")
+  		#end
+		<li class="$!rateCurrClass $!rateAllClass"></li>
+		#end
+	</ul>
+#end
+
+##展示一个树状结构
+##param $data 一个递归的hash结构
+##param $title 上一级传递过来的辅助参数
+#macro(tree $data,$title)
+	<dl>
+		#if($title)
+		<dt>$title</dt>
+		#end
+		#foreach($key in $data.keySet())
+		<dd>
+			#if($data.get($key).size()>0)
+				#tree($data.get($key), $key)
+			#else
+				$key
+			#end
+		</dd>
+		#end
+	</dl>
+#end
+
+##报价截止日期（如果是"长期采购"则显示为"长期采购"，否则显示具体时间）
+#macro(showEffectiveTime $effectiveTime)
+	#if($!date.format($!effectiveTime) == $!field.LONG_PURCHASE_EFFECTIVE_DATE)
+	长期采购
+	#else
+	$!date.format($!effectiveTime)
+	#end
+#end
+
+##vo内小贴士的css类
+#macro(votipClass)
+	#set($curr_path = "tip_$esc.url(${link.getPath()})")
+	#if($cookies.get($curr_path) == "1")tipHidden#{else}tipDisplay#{end}
+#end
+
+#macro(gotoTopAnchor)
+  <div id="gotoTop" style="position:fixed;bottom:152px;right:0;visibility:visible; display: none;">
+    <div class="goTopbg">
+      <div class="goTopArrow"></div>
+      <div class="goTopCon">返回顶部</div>
+    </div>
+  </div>
+#end
+
+#macro(tmUrl $url,$abizKey)/session/tm_login?back_url=$esc.url($response.encodeURL($url))&cookie=$abizKey#end

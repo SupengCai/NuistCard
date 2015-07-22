@@ -1,0 +1,29 @@
+﻿#set($layout = "layout/_layout.html")
+
+#define($css)
+<link href="../assets/css/signin.css" rel="stylesheet">
+<link href="../assets/css/list.css" rel="stylesheet">
+#end
+
+<div class="page-header">
+  <h1>Link-Life<small>连接生活</small></h1>
+</div>
+<div class="jumbotron">
+  <img class="img-rounded" alt="80x80" src="../assets/image/ico/2222@qq.com.ico" style="width: 80px; height: 80px;">
+  <h3 class="right">$!name</h3>
+  <ul style="list-style-type:none">
+		<li class="font">邮箱:$!email</li>
+		<li class="font">生日:$!birthday</li>
+		<li class="font">城市:$!lastLoginLocation</li>
+		<li class="font">粉丝数:111</li>
+		<li class="font">关注数:222</li>
+  </ul>
+  <p><a href="infoEdit" class="btn btn-lg btn-primary btn-block" role="button">编辑</a></p>
+  <p><a href="../index" class="btn btn-success btn-lg btn-block" role="button">返回</a></p>
+</div>
+
+#define($js)
+#end
+    
+
+

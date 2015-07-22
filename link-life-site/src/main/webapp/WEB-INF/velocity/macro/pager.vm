@@ -1,0 +1,123 @@
+##本页的宏都要求页面中有$currPage $totalPage
+
+##pagerLink
+##根据页码生成链接，会根据是否是当前页面来判断是否加样式
+#macro(pagerLink $page)
+	#if($page == $currPage)
+		<a href="#seo("$link.getPagerUrl($page)")" class="now">$page</a>
+	#else
+		<a href="#seo("$link.getPagerUrl($page)")">$page</a>
+	#end
+#end
+
+##pager
+##展示分页信息的宏
+##param $index 可能页面会调用多个宏，为了保持HTML ID的唯一，可以传递此参数来区分
+##param $pageCountArr 每页显示数量的数组，默认为[10,30,50]
+#macro(pager $index $pageCountArr)
+	#if($currPage > $totalPage)
+		#break
+	#end
+	<div class="page">
+		<div class="fr pageValue">
+		#if($currPage > 1)
+		#set($prev = $currPage - 1)
+			<a href="#seo("$link.getPagerUrl($math.toInteger($prev))")" class="prePage" title="翻至上一页">上一页</a>
+		#end
+    	#set($start = $currPage - 2)
+    	#set($end = $currPage + 2)
+    	#if($start < 1)
+    		#set($start = 1)
+    	#end
+    	#if($start > 1)
+    		#pagerLink(1)
+    		#if($start > 2)
+    			..
+    		#end
+    	#end
+    	#if($end > $totalPage)
+    		#set($end = $totalPage)
+    	#end
+    	## 超过一页时才显示页码
+    	#if($totalPage > 1)
+    		#foreach($i in [$start..$end])
+    			#pagerLink($i)
+    		#end
+    	#end
+    	#if($end < $totalPage)
+    		..
+		#end
+		#if($currPage < $totalPage)
+		#set($prev = $currPage + 1)
+		 	<a href="#seo("$link.getPagerUrl($math.toInteger($prev))")" class="nextPage"  title="翻至下一页">下一页</a>
+		#end
+		<form id="pageForm$!index" action="#seo("$link.requestPath")" style="display:inline">
+		#foreach($key in $params.keySet())
+		#if($key != "page")
+		<input type="hidden" name="$key" value="$params.get($key)" />
+		#end
+		#end
+		## 超过一页时显示页码导航
+		#if($totalPage > 1)
+		共<span class="red" id="pageCountNumber">$totalPage</span>页
+		跳至第 <input type="text" name="page" id="pageNumInput$!index" class="text w1"/> 页 <input id="submitPageBtn" class="pageBtn" type="submit" value="确定"/>
+		#end
+		</form>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		(function(){
+  		var form = document.getElementById("pageForm$!index");
+  		if(!form){
+  			return;
+  		}
+  		form.onsubmit=function (event){
+  			var input = document.getElementById("pageNumInput$!index");
+  			var page = parseInt(input.value);
+  			if(isNaN(page) || page>$totalPage || page<1){
+  				input.value = "1";
+  			}else{
+  				input.value = page;
+  			}
+  			if(window.jumpPageCallback$!{index} !== undefined){
+  				var e = window.event || event;
+  				if ( e.preventDefault ) {
+      			e.preventDefault();
+      		}
+      		e.returnValue = false;
+  				jumpPageCallback$!{index}(e.srcElement || e.target);
+  			}
+  		}
+		})();
+		/* ]]> */
+		</script>
+		</div>
+		#if($totalPage > 1 || $totalRecord > 10)
+    	<div class="pageAmount">每页显示：
+			#if(!$pageCountArr)
+				#set($pageCountArr = [10,30,50])
+			#end
+			#foreach($pageCount in $pageCountArr)
+				<a data-pagehref="#seo("$link.getPerPageUrl($pageCount)")" href="javascript:void(0);" rel="nofollow" #if($perPage == $pageCount) class="now" #end>$pageCount</a>
+			#end
+		<script>
+			(function(){
+				var links = document.getElementsByTagName("a");
+				for(var i=0,len=links.length;i<len;i++){
+					var url  = links[i].getAttribute("data-pagehref");
+					if(url) {
+						links[i].href = url;
+					}
+				}
+			})();
+		</script>
+    	</div>
+    	#end
+	</div>
+#end
+
+##获取列表页中某一条记录的序号，会加上前几页的数据条数，如第二页第一条记录序号为21
+##param $count 记录在当前页的序号，从1开始一般将$foreach.count传进来即可
+#macro(listIndex $count)
+	#set($base = $math.mul($math.sub($currPage,1),$perPage))
+	$math.add($base,$count)
+#end

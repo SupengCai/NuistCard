@@ -1,0 +1,58 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp</span>用户信息
+			</h4>
+		</div>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table  table-hover">
+					<tbody>
+						<tr>
+							<td><h4>姓名</h4></td>
+							<td><h4>$!NuistInfo.username</h4></td>
+						</tr>
+						<tr>
+							<td><h4>学号</h4></td>
+							<td><h4>$!NuistInfo.usernumber</h4></td>
+						</tr>
+						<tr class="success">
+							<td><h4>校园卡余额</h4></td>
+							<td><h4>$!NuistInfo.balance</h4></td>
+						</tr>
+						<tr>
+							<td><h4>校园卡状态</h4></td>
+							<td><h4>$!NuistInfo.status</h4></td>
+						</tr>
+						<tr>
+							<td><h4>银行卡号</h4></td>
+							<td><h4>$!NuistInfo.bandcard</h4></td>
+						</tr>
+						<tr>
+							<td><h4>学历</h4></td>
+							<td><h4>$!NuistInfo.education</h4></td>
+						</tr>
+						<tr>
+							<td><h4>年级</h4></td>
+							<td><h4>$!NuistInfo.period</h4></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<a class="btn btn-success btn-lg btn-block" href="index">返 回 主 页</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/panel-->
+#define($js)
+<script src="../assets/js/jquery.validate.js"></script>
+<script src="../assets/js/nuist/base64.min.js"></script>
+#end
+

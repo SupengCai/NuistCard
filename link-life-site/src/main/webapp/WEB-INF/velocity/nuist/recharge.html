@@ -1,0 +1,73 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+<div class="col-lg-6">
+	<div id="row-ad" class="row">
+		<div class="col-lg-12">
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				温馨提示：充值超时通常由官网服务故障导致，本站也无能为力，请谅解并等待官方恢复。
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				<span class="glyphicon glyphicon-credit-card " aria-hidden="true">&nbsp</span>转账充值
+			</h4>
+		</div>
+		<div class="panel-body">
+			<form action="/SynCard/Manage/TransferPost" id="TransferForm"
+				method="post">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<td><h4>姓名</h4></td>
+								<td><h4>$!username</h4></td>
+							</tr>
+							<tr>
+								<td><h4>学号</h4></td>
+								<td><h4>$!usernumber</h4></td>
+							</tr>
+							<tr class="success">
+								<td><h4>校园卡余额</h4></td>
+								<td><h4>$!balance</h4></td>
+							</tr>
+							<tr>
+								<td><h4>充值</h4></td>
+								<td><input name="txtAmount" id="txtAmount" type="text"
+									class="form-control input-lg" placeholder="转入金额"></td>
+							</tr>
+							<tr>
+								<td><h4>查询密码</h4></td>
+								<td><input id="Password" name="Password" type="password"
+									class="form-control input-lg" placeholder="查询密码"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+			<div class="form-group">
+				<button id="btnTransfer" class="btn btn-lg btn-primary btn-block"
+					type="button">充 值</button>
+				<a class="btn btn-success btn-lg btn-block" href="index">返 回 主 页</a>
+				<div>
+					<h5>*单笔充值金额不超过200元</h5>
+					<h5>*充值金额将在一卡通使用后更新</h5>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!--/panel-->
+
+#define($js)
+<script src="../assets/js/jquery.validate.js"></script>
+<script src="../assets/js/nuist/base64.min.js"></script>
+<script src="../assets/js/nuist/jquery.form.js"></script>
+<script src="../assets/js/nuist/recharge.min.js"></script>
+#end
+

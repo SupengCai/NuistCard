@@ -1,0 +1,548 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+
+
+<div class="col-lg-12">
+	<div role="tabpanel">
+		<ul class="nav nav-tabs huge" role="tablist">
+			<li id="li-amount" role="presentation" class="active"><a
+				href="#shoprank" aria-controls="home" role="tab" data-toggle="tab"><span
+					class="glyphicon glyphicon-list" aria-hidden="true">&nbsp</span>商铺榜</a></li>
+			<li id="li-area" role="presentation"><a href="#myrank"
+				aria-controls="profile" role="tab" data-toggle="tab"><span
+					class="glyphicon glyphicon-list" aria-hidden="true">&nbsp</span>用户榜</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="shoprank">
+				<div class="row">
+					<div class="col-lg-7">
+						<div class="col-lg-12 col-md-6">
+							<br> 
+							#if($statisticType==0||$statisticType==3)
+								<div class="alert alert-info alert-dismissable">
+									<button type="button" class="close" data-dismiss="alert"
+										aria-hidden="true">&times;</button>
+									温馨提示：排行结果基于用户的数据分享，请点击<a id="join" href="#"
+										class="alert-link">参与分享</a>以查看当前统计结果。
+								</div>
+							#else
+							<ol class="breadcrumb">
+								<li class="active"><span class="glyphicon glyphicon-cloud"
+									aria-hidden="true">&nbsp</span>排名基于本平台参与数据分享的用户</li>
+							</ol>
+							#end
+							<div class="panel-group" id="accordion" role="tablist"
+								aria-multiselectable="true">
+								<div class="panel panel-primary">
+									<div class="panel-heading" role="tab" id="headingOne">
+										<div class="row collapsed">
+											<a data-toggle="collapse" data-parent="#accordion"
+												href="#collapseOne" aria-expanded="false"
+												aria-controls="collapseOne">
+												<div class="col-xs-3">
+													<span
+														class="glyphicon glyphicon-sort-by-order huge font-white"
+														aria-hidden="true">&nbsp</span>
+												</div>
+												<div class="col-xs-9 text-right huge font-white">收入最高</div>
+											</a>
+										</div>
+									</div>
+									<div id="collapseOne" class="panel-collapse collapse"
+										role="tabpanel" aria-labelledby="headingOne">
+										<div class="panel-body">
+											<div class="col-lg-12 col-md-6">
+												<h3>东院收入最高</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>交易额</th>
+																<th>交易次数</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $eastAmountRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.amounts元</td>
+																<td>$map.times次</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>中院收入最高</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>交易额</th>
+																<th>交易次数</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $centerAmountRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.amounts元</td>
+																<td>$map.times次</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>西院收入最高</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>交易额</th>
+																<th>交易次数</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $westAmountRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.amounts元</td>
+																<td>$map.times次</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-green">
+									<div class="panel-heading" role="tab" id="headingTwo">
+										<div class="row collapsed">
+											<a data-toggle="collapse" data-parent="#accordion"
+												href="#collapseTwo" aria-expanded="false"
+												aria-controls="collapseTwo">
+												<div class="col-xs-3">
+													<span
+														class="glyphicon glyphicon-sort-by-attributes-alt huge font-white"
+														aria-hidden="true">&nbsp</span>
+												</div>
+												<div class="col-xs-9 text-right huge font-white">人气最旺</div>
+											</a>
+										</div>
+									</div>
+									<div id="collapseTwo" class="panel-collapse collapse"
+										role="tabpanel" aria-labelledby="headingTwo">
+										<div class="panel-body">
+											<div class="col-lg-12 col-md-6">
+												<h3>东院人气最旺</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>消费人数</th>
+																<th>人均消费</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $eastPopularityRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.people人</td>
+																<td>$map.average元</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>中院人气最旺</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>消费人数</th>
+																<th>人均消费</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $centerPopularityRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.people人</td>
+																<td>$map.average元</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>西院人气最旺</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>消费人数</th>
+																<th>人均消费</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $westPopularityRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.people人</td>
+																<td>$map.average元</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary">
+									<div class="panel-heading" role="tab" id="headingThree">
+										<div class="row collapsed">
+											<a data-toggle="collapse" data-parent="#accordion"
+												href="#collapseThree" aria-expanded="false"
+												aria-controls="collapseThree">
+												<div class="col-xs-3">
+													<span class="glyphicon glyphicon-stats huge font-white"
+														aria-hidden="true">&nbsp</span>
+												</div>
+												<div class="col-xs-9 text-right huge font-white">人均最贵</div>
+											</a>
+										</div>
+									</div>
+									<div id="collapseThree" class="panel-collapse collapse"
+										role="tabpanel" aria-labelledby="headingThree">
+										<div class="panel-body">
+											<div class="col-lg-12 col-md-6">
+												<h3>东院人均最贵</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>人均消费</th>
+																<th>交易次数</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $eastPerConsumeRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.average元</td>
+																<td>$map.times次</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>中院人均最贵</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>人均消费</th>
+																<th>交易次数</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $centerPerConsumeRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.average元</td>
+																<td>$map.times次</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>西院人均最贵</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>人均消费</th>
+																<th>交易次数</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $westPerConsumeRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.average元</td>
+																<td>$map.times次</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-yellow">
+									<div class="panel-heading" role="tab" id="headingFour">
+										<div class="row collapsed">
+											<a data-toggle="collapse" data-parent="#accordion"
+												href="#collapseFour" aria-expanded="false"
+												aria-controls="collapseFour">
+												<div class="col-xs-3">
+													<span class="glyphicon glyphicon-tower huge font-white"
+														aria-hidden="true">&nbsp</span>
+												</div>
+												<div class="col-xs-9 text-right huge font-white">土豪出没</div>
+											</a>
+										</div>
+									</div>
+									<div id="collapseFour" class="panel-collapse collapse"
+										role="tabpanel" aria-labelledby="headingFour">
+										<div class="panel-body">
+											<div class="col-lg-12 col-md-6">
+												<h3>东院土豪出没</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>单笔消费</th>
+																<th>人均消费</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $eastCostMostRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.perbill元</td>
+																<td>$map.average元</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>中院土豪出没</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>单笔消费</th>
+																<th>人均消费</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $centerCostMostRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.perbill元</td>
+																<td>$map.average元</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+												<h3>西院土豪出没</h3>
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>排名</th>
+																<th>商铺名称</th>
+																<th>单笔消费</th>
+																<th>人均消费</th>
+															</tr>
+														</thead>
+														<tbody>
+															#foreach($map in $westCostMostRank)
+															<tr>
+																<td>No.$velocityCount</td>
+																<td>$map.shopName</td>
+																<td>$map.perbill元</td>
+																<td>$map.average元</td>
+															</tr>
+															#end
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<div class="col-lg-12 col-md-6">
+							<h3>统计状态</h3>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<tbody>
+										<tr>
+											<td>参与用户</td>
+											<td>$!people人</td>
+										</tr>
+										<tr>
+											<td>参与数据</td>
+											<td>$!dataSize条</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="form-group">
+								<a class="btn btn-success btn-lg btn-block" href="index">返 回
+									主 页</a>
+							</div>
+							#if($statisticType==1||$statisticType==2)
+							<div class="alert alert-info alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert"
+									aria-hidden="true">&times;</button>
+								温馨提示：感谢您的参与，您也可以随时<a id="disjoin" href="#" class="alert-link">退出分享</a>，我们将不再统计您的数据。
+							</div>
+							#end
+						</div>
+					</div>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="myrank">
+				<div class="row">
+					#if($statisticType==0||$statisticType==3)
+					<div class="col-lg-12 col-md-6">
+						<div class="row">
+							<div class="col-lg-12">
+								<ol class="breadcrumb">
+									<li class="active"><span class="glyphicon glyphicon-cloud"
+										aria-hidden="true">&nbsp</span>温馨提示：需要点击屏幕最上面的“参与分享”才能够查看自己的排行情况，数据将在第二天清晨更新，记得来看哦。</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+					#end
+					<div class="col-lg-7">
+						<div class="col-lg-12 col-md-6">
+							<h3>我的东院最爱</h3>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>排名</th>
+											<th>商铺名称</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+											<th>单笔消费</th>
+										</tr>
+									</thead>
+									<tbody>
+										#foreach($map in $myEastRank)
+										<tr>
+											<td>No.$velocityCount</td>
+											<td>$map.shopName</td>
+											<td>$map.amounts元</td>
+											<td>$map.times次</td>
+											<td>$map.average元</td>
+										</tr>
+										#end
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-6">
+							<h3>我的中院最爱</h3>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>排名</th>
+											<th>商铺名称</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+											<th>单笔消费</th>
+										</tr>
+									</thead>
+									<tbody>
+										#foreach($map in $myCenterRank)
+										<tr>
+											<td>No.$velocityCount</td>
+											<td>$map.shopName</td>
+											<td>$map.amounts元</td>
+											<td>$map.times次</td>
+											<td>$map.average元</td>
+										</tr>
+										#end
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-6">
+							<h3>我的西院最爱</h3>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>排名</th>
+											<th>商铺名称</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+											<th>单笔消费</th>
+										</tr>
+									</thead>
+									<tbody>
+										#foreach($map in $myWestRank)
+										<tr>
+											<td>No.$velocityCount</td>
+											<td>$map.shopName</td>
+											<td>$map.amounts元</td>
+											<td>$map.times次</td>
+											<td>$map.average元</td>
+										</tr>
+										#end
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/panel-->
+
+<input type="hidden" value=$!userNumber name="userNumber"
+	id="userNumber">
+#define($js)
+<script src="../assets/js/nuist/ranklist.min.js"></script>
+#end

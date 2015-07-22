@@ -1,0 +1,54 @@
+﻿#set($layout = "layout/_layout.html")
+#define($css)
+<link type="text/css" rel="stylesheet"
+	href="assets/css/map/baidumap.css">
+<link type="text/css" rel="stylesheet" href="assets/css/track.css">
+#end
+
+<div id="life-map"></div>
+
+<div class="container" id="div-track">
+	<div class="page-header">
+		<h2 class="form-signin-heading">Link-Life</h2>
+		<h4 class="form-signin-heading right">-连接生活</h4>
+	</div>
+	<div class="jumbotron">
+		<form id="form-track" class="form-track" action="account/track" method="post">
+			<div class="page-header">
+				<div class="form-group">
+					<input name="doWhat" id="doWhat" type="text" class="form-control input-lg"
+						placeholder="我在做什么">
+				</div>
+				<div class="form-group">
+					<input name="sayWhat" id="sayWhat" type="text" class="form-control input-lg"
+						placeholder="我想说什么">
+				</div>
+				<div id="track-info" style="display: none;">
+					<input name="email" id="email" type="text" value=$!email> <input
+						name="title" id="title" type="text"> <input name="address"
+						id="address" type="text"> <input name="longitude"
+						id="longitude" type="text"> <input name="latitude"
+						id="latitude" type="text"> <input name="city" id="city"
+						type="text" value=$!city>
+				</div>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">分享生活</button>
+			<button id="btn-back" class="btn btn-success btn-lg btn-block"
+				type="button">返回</button>
+		</form>
+	</div>
+</div>
+
+#define($js)
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?type=quick&ak=fByIyk938Uo4I8lOYd79Afc5&v=1.0"></script>
+<script type="text/javascript" src="assets/js/map/mapObjects.js"></script>
+<script type="text/javascript" src="assets/js/map/mapMain.js"></script>
+<script src="assets/js/jquery.validate.js"></script>
+<script type="text/javascript"
+	src="assets/js/validate/track-validate.js"></script>
+<script type="text/javascript" src="assets/js/basejs.js"></script>
+<script src="assets/js/menu/menu.js"></script>
+<script type="text/javascript" src="assets/js/validate/form-validate.js"></script>
+#end
+

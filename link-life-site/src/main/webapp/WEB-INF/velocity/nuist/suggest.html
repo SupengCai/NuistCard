@@ -1,0 +1,41 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+<div class="col-lg-6">
+	<div class="alert alert-info alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">&times;</button>
+		温馨提示：初始密码需要在机器上修改后才可登录网站，请尝试修改查询密码及充值密码并登录，若仍无法解决，可以向<a
+			href="wechatQR" class="alert-link">微信公众号</a>反馈
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				<span class="glyphicon glyphicon-envelope" aria-hidden="true">&nbsp</span>意见反馈
+			</h4>
+		</div>
+		<div class="panel-body">
+			<form id="form-suggest" action="suggest" method="post">
+				<div class="form-group">
+					<div class="table-responsive">
+						<textarea name="suggest" id="suggest"
+							class="form-control input-lg" rows="3"
+							placeholder="感谢您对我们提出的宝贵意见"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<button id="btn-suggest" class="btn btn-lg btn-primary btn-block"
+						type="button">发 送</button>
+				</div>
+			</form>
+			<div class="form-group">
+				<a class="btn btn-success btn-lg btn-block" href="index">返 回 主 页</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/panel-->
+
+#define($js)
+<script src="../assets/js/nuist/suggest.min.js"></script>
+#end

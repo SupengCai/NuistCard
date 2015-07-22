@@ -1,0 +1,30 @@
+<!-- 下面这个layout的设置是可以省略的，因为配置中已经将其设置为默认。如果使用其它的布局就使用下面的set方式更改 --> #set($layout = "default.html")<!-- 下面是设置使用的布局页面default.html中的变量，如果这些变量已经在controller中指定，则这里也可以省略 --> #set($title="Made-In-China.com")
+#set($seo_kwd="员工信息")<!-- 下面是该页面需要单独引用的页面片段，如果不需要，则可以省略！ --> #parse("layout/_top.html")<!-- 下面是页面的正文内容 -->
+<script type="text/javascript" src="/script/jquery-1.4.2.js">
+</script>
+<script type="text/javascript" src="/script/jquery.validate.js">
+</script>
+<script type="text/javascript">
+
+</script>
+<div>
+    <a>个人信息</a>
+    <a>部门信息</a>
+    <a>职位信息</a>
+    <br><br>
+    <form id="form-employee-info" action="editinfo" method="post">
+        工号: ${job.oss_id}
+        <br>
+       等級:<input id="name" name="name" type="text" value=${job.oss_level}>
+        <br>
+        工种:<input id="salary" name="salary" type="text" value=${job.oss_name}>
+        <br>
+        <button type="button" onclick="return edit_post();">
+            修改
+        </button>
+        <br>
+    </form>
+</div>
+<br>
+<br>
+#parse("layout/_footer.html")

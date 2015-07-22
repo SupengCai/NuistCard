@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ABIZ_SELF_DEFINITION">
+
+
+  <resultMap id="attachment_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.CoreAttachment"
+    extends="CORE_ATTACHMENT.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- 公司图片-->
+  <resultMap id="company_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.CoreCompanyPhotoWithBLOBs" extends="CORE_COMPANY_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- 公司证书图片-->
+  <resultMap id="certificate_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.CoreCertificatePhotoWithBLOBs" extends="CORE_CERTIFICATE_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- 询价单物品图�?-->
+  <resultMap id="inquiry_prod_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.InquiryProdPhotoWithBLOBs" extends="INQUIRY_PROD_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- 报价物品图片-->
+  <resultMap id="quotation_prod_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.QuotationPhotoWithBLOBs" extends="QUOTATION_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- 品牌图片-->
+  <resultMap id="brand_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.BrandPhotoWithBLOBs" extends="BRAND_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- 标准品图�?-->
+  <resultMap id="merchandise_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.MerchandisePhotoWithBLOBs" extends="MERCHANDISE_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- banner推荐图片-->
+  <resultMap id="banner_recommend_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.BannerRecommend" extends="BANNER_RECOMMEND.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+  <!-- 申请成为大买家供应商图片-->
+  <resultMap id="efpg_apply_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.EfpgApplyInfo" extends="EFPG_APPLY_INFO.ibatorgenerated_ResultMapWithBLOBs">
+  </resultMap>
+
+
+
+   <!-- 根据Email查询用户信息 -->
+	<select id="listUserInfos" parameterClass="string" resultClass="java.util.LinkedHashMap">
+		<![CDATA[
+select a.email,
+       a.mobile,
+       a.logon_user_name,
+       (select m.com_info_full_status from abiz.core_member_info m where m.member_id=a.member_id and rownum<=1) com_info_full_status,
+       a.mic_log_name,
+       to_char(a.member_id) member_id,
+       to_char(a.user_id) user_id,
+       c.com_status,
+       nvl(d.com_name, c.com_name) com_name,
+       b.user_name,
+       b.gender,
+       nvl(d.tel_national_no, c.tel_national_no) tel_national_no,
+       nvl(d.tel_country_no, c.tel_country_no) tel_country_no,
+       nvl(d.com_tel, c.com_tel) com_tel,
+       c.com_country,
+       c.com_province,
+       c.com_city,
+       a.platform_name
+  from abiz.core_logon_info     a,
+       abiz.core_user_search     b,
+       abiz.core_company_maint  c,
+       abiz.core_company_search d
+ where a.user_id = b.user_id
+   and a.member_id = c.member_id(+)
+   and a.member_id = d.member_id(+)
+   and a.user_role = '0'
+   and a.business_flag = '1'
+   and a.email = #email#
+
+		]]>
+	</select>
+
+
+	<select id="getInquiryProdSequenceValue" parameterClass="java.lang.String" resultClass="java.lang.Long">
+	  <![CDATA[
+	  	select $sequenceName$.nextval from dual
+	  ]]>
+  	</select>
+
+  	<!-- 根据会员id查询MICComId -->
+	<select id="getComIdByMemberId" parameterClass="java.lang.Long" resultClass="java.util.HashMap">
+		<![CDATA[
+select l.com_id
+  from abiz.core_logon_info_cn l
+ where l.com_id = #memberIdOrUserName#
+		]]>
+	</select>
+
+	<!-- 根据会员用户名查询MICComId -->
+	<select id="getComIdByUserName" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+		<![CDATA[
+select l.com_id
+  from abiz.core_logon_info_cn l
+ where l.log_user_name = #memberIdOrUserName#
+		]]>
+	</select>
+
+<!-- 根据公司ID,查找memberID -->
+	<select id="getMemberIdByComId" parameterClass="long" resultClass="java.util.HashMap">
+		<![CDATA[
+ SELECT   a.ABIZ_COM_ID, a.ABIZ_MEMBER_ID as MEMBER_ID, B.USER_ID
+  FROM   ABIZ.CORE_COMPANY_CN_MAINT_CHK a, ABIZ.CORE_LOGON_INFO b
+ WHERE   a.COM_ID = #comId# AND a.ABIZ_MEMBER_ID = B.MEMBER_ID and b.user_role='0' and rownum<=1
+		]]>
+	</select>
+	<select id="findComInfobyInquiry"  parameterClass="java.lang.Long"  resultClass="java.util.HashMap" >
+		<![CDATA[
+SELECT
+A.MEMBER_ID||'' MEMBER_ID,A.COM_NAME,
+         B.EMAIL,
+         c.user_name || DECODE (C.GENDER, '0', '女士', '先生') USER_NAME
+  FROM   CORE_COMPANY_MAINT a,
+         CORE_LOGON_INFO b,
+         CORE_USER_MAINT c,
+         inquiry_info d
+ WHERE       a.MEMBER_ID = B.MEMBER_ID
+         AND B.USER_ROLE = '0'
+         AND b.BUSINESS_FLAG = '1'
+         AND B.USER_ID = C.USER_ID
+         AND d.INQUIRY_ID = #relationId#
+         AND D.MEMBER_ID = a.MEMBER_ID
+
+		]]>
+	</select>
+
+		<select id="findCominfobyRecruit"  parameterClass="java.lang.Long"  resultClass="java.util.HashMap" >
+		<![CDATA[
+SELECT
+A.MEMBER_ID||'' MEMBER_ID,A.COM_NAME,
+         B.EMAIL,
+         c.user_name || DECODE (C.GENDER, '0', '女士', '先生') USER_NAME
+  FROM   CORE_COMPANY_MAINT a,
+         CORE_LOGON_INFO b,
+         CORE_USER_MAINT c,
+         PROVIDER_RECRUIT_INFO d
+ WHERE       a.MEMBER_ID = B.MEMBER_ID
+         AND B.USER_ROLE = '0'
+         AND b.BUSINESS_FLAG = '1'
+         AND B.USER_ID = C.USER_ID
+         AND d.RECRUIT_ID =  #relationId#
+         AND D.MEMBER_ID = a.MEMBER_ID
+
+		]]>
+	</select>
+
+		<select id="findCominfobyEtprs"  parameterClass="java.lang.Long"  resultClass="java.util.HashMap" >
+		<![CDATA[
+SELECT
+A.MEMBER_ID||'' MEMBER_ID,
+A.COM_NAME,
+         B.EMAIL,
+         c.user_name || DECODE (C.GENDER, '0', '女士', '先生') USER_NAME
+  FROM   CORE_COMPANY_MAINT a,
+         CORE_LOGON_INFO b,
+         CORE_USER_MAINT c,
+         ETPRS_DEMAND_TOPIC d
+ WHERE       a.MEMBER_ID = B.MEMBER_ID
+         AND B.USER_ROLE = '0'
+         AND b.BUSINESS_FLAG = '1'
+         AND B.USER_ID = C.USER_ID
+         AND d.ETPRS_TOPIC_ID = #relationId#
+         AND D.MEMBER_ID = a.MEMBER_ID
+
+		]]>
+	</select>
+
+
+	<!-- 附件持久化到数据库中 -->
+	<select id="listAttachments4FFS"   resultMap="attachment_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from abiz.core_attachment a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '0'
+                   and b.relation_id = a.attachment_id)
+           and a.delete_flag = '1'
+		   and DBMS_LOB.GETLENGTH(A.ATTACHMENT_CONTENT) > 0
+        union all
+
+        select a.*
+          from abiz.core_attachment a, abiz.ffs_att_pic_log b
+         where b.relation_type = '0'
+           and b.relation_id = a.attachment_id
+           and a.updated_time > b.last_updated_time) rs
+ where 1 = 1
+   and rownum <= 100
+
+
+
+
+		]]>
+	</select>
+
+
+	<!-- 查询公司图片（FFS�?-->
+	<select id="listCompanyPhotos4FFS"   resultMap="company_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from abiz.core_company_photo a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '1'
+                   and b.relation_id = a.com_photo_id)
+           and a.pic_status not in ('4', '5')
+           and DBMS_LOB.GETLENGTH(A.PIC_ORIGINAL) > 0
+        union all
+
+        select a.*
+          from abiz.core_company_photo a, abiz.ffs_att_pic_log b
+         where b.relation_type = '1'
+           and b.relation_id = a.com_photo_id
+           and a.check_time > b.last_updated_time) rs
+ where 1 = 1
+   and rownum <= 100
+
+
+
+
+		]]>
+	</select>
+
+
+	<!-- 查询公司证书图片（FFS�?-->
+	<select id="listCertificatePhotos4FFS"   resultMap="certificate_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from abiz.core_certificate_photo a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '2'
+                   and b.relation_id = a.certificate_photo_id)
+           and a.pic_status not in ('4', '5')
+           and DBMS_LOB.GETLENGTH(A.PIC_ORIGINAL) > 0
+        union all
+
+        select a.*
+          from abiz.core_certificate_photo a, abiz.ffs_att_pic_log b
+         where b.relation_type = '2'
+           and b.relation_id = a.certificate_photo_id
+           and a.check_time > b.last_updated_time) rs
+ where 1 = 1
+   and rownum <= 100
+
+
+
+
+		]]>
+	</select>
+
+	<!-- 查询询价单物品图片（FFS�?-->
+	<select id="listInquiryProdPhotos4FFS"   resultMap="inquiry_prod_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from abiz.inquiry_prod_photo a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '3'
+                   and b.relation_id = a.photo_id)
+           and a.pic_status not in ('4', '5')
+           and DBMS_LOB.GETLENGTH(A.PIC_ORIGINAL) > 0
+        union all
+
+        select a.*
+          from abiz.inquiry_prod_photo a, abiz.ffs_att_pic_log b
+         where b.relation_type = '3'
+           and b.relation_id = a.photo_id
+           and a.check_time > b.last_updated_time) rs
+ where 1 = 1
+   and rownum <= 100
+
+
+
+
+		]]>
+	</select>
+
+
+	<!-- 查询报价物品图片（FFS�?-->
+	<select id="listQuotationProdPhotos4FFS"   resultMap="quotation_prod_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from abiz.quotation_photo a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '4'
+                   and b.relation_id = a.quotation_photo_id)
+           and a.pic_status not in ('4', '5')
+           and DBMS_LOB.GETLENGTH(A.PIC_ORIGINAL) > 0
+        union all
+
+        select a.*
+          from abiz.quotation_photo a, abiz.ffs_att_pic_log b
+         where b.relation_type = '4'
+           and b.relation_id = a.quotation_photo_id
+           and a.check_time > b.last_updated_time) rs
+ where 1 = 1
+   and rownum <= 100
+
+
+
+
+		]]>
+	</select>
+
+
+	<!-- 查询品牌图片（FFS�?-->
+	<select id="listBrandPhotos4FFS"   resultMap="brand_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from abiz.brand_photo a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '5'
+                   and b.relation_id = a.photo_id)
+           and a.pic_status not in ('4', '5')
+           and DBMS_LOB.GETLENGTH(A.PIC_ORIGINAL) > 0
+        union all
+
+        select a.*
+          from abiz.brand_photo a, abiz.ffs_att_pic_log b
+         where b.relation_type = '5'
+           and b.relation_id = a.photo_id
+           and a.check_time > b.last_updated_time) rs
+ where 1 = 1
+   and rownum <= 100
+
+
+
+
+		]]>
+	</select>
+
+
+	<!-- 查询标准品图片（FFS�?-->
+	<select id="listMerchandisePhotos4FFS"   resultMap="merchandise_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from ABIZ.MERCHANDISE_PHOTO a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '6'
+                   and b.relation_id = A.MERCHANDISE_PHOTO_ID)
+           and a.pic_status not in ('4', '5')
+           and DBMS_LOB.GETLENGTH(A.PIC_ORIGINAL) > 0) rs
+ where 1 = 1
+   and rownum <= 100
+		]]>
+	</select>
+
+	<!-- banner推荐图片（FFS�?-->
+	<select id="listBannerRecommendPhotos4FFS"   resultMap="banner_recommend_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+select *
+  from (select a.*
+          from abiz.banner_recommend a
+         where not exists (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '8'
+                   and b.relation_id = a.banner_id)
+           and DBMS_LOB.GETLENGTH(A.BANNER_PIC) > 0) rs
+ where 1 = 1
+   and rownum <= 100
+		]]>
+	</select>
+
+	<!-- 申请成为大买家供应商（FFS�?-->
+	<select id="listEfpgApplyPhotos4FFS"   resultMap="efpg_apply_photo_ibatorgenerated_BaseResultMap">
+		<![CDATA[
+
+select *
+  from (select a.*
+          from abiz.efpg_apply_info a
+         where not exists
+         (select 1
+                  from abiz.ffs_att_pic_log b
+                 where b.relation_type = '9'
+                   and b.relation_id = a.efpg_apply_id)
+           and DBMS_LOB.GETLENGTH(A.OFFLINE_DOWNLOAD_FILE) > 0
+        union all
+
+        select a.*
+          from abiz.efpg_apply_info a, abiz.ffs_att_pic_log b
+         where b.relation_type = '9'
+           and b.relation_id = a.efpg_apply_id
+           and a.updated_time > b.last_updated_time) rs
+ where 1 = 1
+   and rownum <= 100
+		]]>
+	</select>
+
+	<!-- 查询采购�?求关键词和目录码数据-->
+	<select id="listDemandKeywords4Redis"   resultClass="java.util.HashMap">
+		<![CDATA[
+
+SELECT to_char(A.KEYWORD_ID) KEYWORD_ID,
+	   A.KEYWORD,
+       (SELECT TO_CHAR(wm_concat(B.CAT_CODE))
+          FROM (SELECT *
+                  FROM ABIZ.DEMAND_KEYWORD_CATEGORY
+                 ORDER BY prod_num DESC) b
+         WHERE B.KEYWORD_ID = A.KEYWORD_id) cat_codes
+  FROM abiz.demand_keyword a
+ WHERE A.DELETE_FLAG = '1'
+   and not exists (select c.keyword_id
+          from abiz.demand_keyword_log c
+         where c.keyword_id = a.keyword_id)
+   AND ROWNUM <= 100
+		]]>
+	</select>
+
+	<!-- 统计当天大买家采购需求个�? -->
+	 <select id="countCurrentEfpgDemandNum"  resultClass="int">
+
+	 <![CDATA[
+
+    select count(1) from EFPG_DEMAND_INFO where ADDED_TIME between trunc(sysdate) and
+       to_date(to_char(sysdate, 'yyyy-mm-dd') || ' 23:59:59',
+               'yyyy-mm-dd hh24:mi:ss')
+
+               ]]>
+  </select>
+
+</sqlMap>

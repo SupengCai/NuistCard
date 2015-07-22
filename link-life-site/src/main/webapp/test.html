@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=2.0&ak=fByIyk938Uo4I8lOYd79Afc5"></script>
+<title>百度地图的Hello, World</title>
+<link type="text/css" rel="stylesheet" href="css/baidumap.css">
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+	//百度地图API功能
+	var map = new BMap.Map("allmap"); // 创建Map实例
+	map.centerAndZoom(new BMap.Point(118.804564, 32.089556), 11);
+	var local = new BMap.LocalSearch(map, {
+		renderOptions : {
+			map : map
+		}
+	});
+	local.search("景点");
+</script>

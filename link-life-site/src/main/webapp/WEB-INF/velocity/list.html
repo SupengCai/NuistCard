@@ -1,0 +1,113 @@
+﻿#set($layout = "layout/_layout.html") 
+
+#define($css)
+<link type="text/css" rel="stylesheet"
+	href="../assets/css/map/baidumap.css">
+<link href="../assets/css/list.css" rel="stylesheet">
+#end
+
+<div class="container body" id="container">
+	<div class="page-header">
+		<h2 class="form-signin-heading">Link-Life</h2>
+		<h4 class="form-signin-heading right">-连接生活</h4>
+	</div>
+	<div id="track-info" style="display: none;">
+		<input name="mintime" id="mintime" type="text" value=$!timemap.mintime>
+		<input name="maxtime" id="maxtime" type="text" value=$!timemap.maxtime>
+	</div>
+
+	<div class="tab-content">
+		<div class="jumbotron">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th><span style="font-size: 20pt; font-family: 宋体">好友昵称</span></th>
+						<h>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					#set ($i=1) #foreach($li in $friendslist)
+					<tr>
+						<td><span style="font-size: 17pt; font-family: 宋体">$i</span></td>
+						<td><span style="font-size: 17pt; font-family: 宋体">$li.name</span></td>
+						<td><button id=$li.email name="btn-track" type="button"
+								class="btn btn-success">TA在干嘛</button></td>
+					</tr>
+					#set($i=$i+1) #end
+				</tbody>
+			</table>
+			<div class="tab-pane fade" id="profile"></div>
+		</div>
+
+	</div>
+</div>
+<nav id="toolbar-search" class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+	<div class="container">
+		<div id="navbar" class="navbar-collapse collapsed">
+			<div id="toolbar" class="btn-toolbar" role="toolbar">
+				<div class="input-group dropup  input-group-lg">
+					<input id="account-name" class="form-control" placeholder="输入好友昵称"
+						type="text">
+					<ul id="suggestionlist" class="dropdown-menu" role="menu"></ul>
+					<div class="input-group-btn dropup">
+						<button id="search-friend" type="button" class="btn btn-default">查找</button>
+						<button type="button" class="btn btn-success dropdown-toggle"
+							data-toggle="dropdown">
+							功能 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../index">主页</a></li>
+							<li class="divider"></li>
+							<li><a href="list">好友动态</a></li>
+							<li class="divider"></li>
+							<li><a href="../suggest">联系开发者</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.navbar-collapse -->
+	</div>
+</nav>
+
+<div id="life-map"></div>
+
+<nav id="toolbar-send" class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+	<div class="container">
+		<div id="navbar" class="navbar-collapse collapsed">
+			<div id="toolbar" class="btn-toolbar" role="toolbar">
+				<div class="input-group dropup  input-group-lg">
+					<input id="keyword" class="form-control" placeholder="分享我的位置"
+						type="text">
+					<ul id="suggestionlist" class="dropdown-menu" role="menu"></ul>
+					<div class="input-group-btn dropup">
+						<button id="search" type="button" class="btn btn-default">搜索</button>
+						<button type="button" class="btn btn-success dropdown-toggle"
+							data-toggle="dropdown">
+							功能 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../index">主页</a></li>
+							<li class="divider"></li>
+							<li><a href="list">好友动态</a></li>
+							<li class="divider"></li>
+							<li><a id="btn-refresh">刷新</a></li>
+							<li class="divider"></li>
+							<li><a href="../suggest">联系开发者</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.navbar-collapse -->
+	</div>
+</nav>
+#define($js)
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?type=quick&ak=fByIyk938Uo4I8lOYd79Afc5&v=1.0"></script>
+<script type="text/javascript" src="../assets/js/map/mapObjects.js"></script>
+<script type="text/javascript" src="../assets/js/map/mapMain.js"></script>
+<script src="../assets/js/list/list.js"></script>
+#end

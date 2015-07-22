@@ -1,0 +1,370 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+
+
+<div class="col-lg-12">
+	<div role="tabpanel">
+		<ul class="nav nav-tabs huge" role="tablist">
+			<li id="li-amount" role="presentation" class="active"><a
+				href="#amountCharts" aria-controls="home" role="tab"
+				data-toggle="tab"><span class="glyphicon glyphicon-list-alt"
+					aria-hidden="true">&nbsp</span>金额</a></li>
+			<li id="li-area" role="presentation"><a href="#areaCharts"
+				aria-controls="profile" role="tab" data-toggle="tab"><span
+					class="glyphicon glyphicon-map-marker" aria-hidden="true">&nbsp</span>区域</a></li>
+			<li id="li-shop" role="presentation"><a href="#shopCharts"
+				aria-controls="profile" role="tab" data-toggle="tab"><span
+					class="glyphicon glyphicon-shopping-cart" aria-hidden="true">&nbsp</span>商铺</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="amountCharts">
+				<div class="row">
+					<div class="col-lg-8">
+						<div id="container_amountdata"></div>
+						<div id="container_amounttime"></div>
+					</div>
+					<div class="col-lg-4">
+						<div class="col-lg-12 col-md-6">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>交易总计</th>
+											<th>金额</th>
+											<th>次数</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>消费</td>
+											<td id="td_consumeamount">0元</td>
+											<td id="td_consumetime">0次</td>
+										</tr>
+										<tr>
+											<td>充值</td>
+											<td id="td_rechargeamount">0元</td>
+											<td id="td_rechargetime">0次</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>平均额度</th>
+											<th>金额</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>单笔消费</td>
+											<td id="td_averageconsumes">0元</td>
+										</tr>
+										<tr>
+											<td>单笔充值</td>
+											<td id="td_averagerecharges">0元</td>
+										</tr>
+										<tr>
+											<td>日均消费</td>
+											<td id="td_averageconsume">0元</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="btn-amount-week" class="panel panel-primary">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">本周数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="btn-amount-term" class="panel panel-green">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">本学期数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="btn-amount-all" class="panel panel-yellow">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">所有数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div role="tabpane2" class="tab-pane active" id="areaCharts">
+				<div class="row">
+					<div class="col-lg-8">
+						<div id="container_areadata"></div>
+						<div id="container_areatime"></div>
+					</div>
+					<div class="col-lg-4">
+						<div class="col-lg-12 col-md-6">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>区域总计</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>东院</td>
+											<td id="td_eastamount">0元</td>
+											<td id="td_easttime">0次</td>
+										</tr>
+										<tr>
+											<td>中院</td>
+											<td id="td_centreamount">0元</td>
+											<td id="td_centretime">0次</td>
+										</tr>
+										<tr>
+											<td>西院</td>
+											<td id="td_westamount">0元</td>
+											<td id="td_westtime">0次</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>平均每天</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>东院</td>
+											<td id="td_avg_eastamount">0元</td>
+											<td id="td_avg_easttime">0次</td>
+										</tr>
+										<tr>
+											<td>中院</td>
+											<td id="td_avg_centreamount">0元</td>
+											<td id="td_avg_centretime">0次</td>
+										</tr>
+										<tr>
+											<td>西院</td>
+											<td id="td_avg_westamount">0元</td>
+											<td id="td_avg_westtime">0次</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>平均每笔</th>
+											<th>消费金额</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>东院</td>
+											<td id="td_avg_eastamounts">0元</td>
+										</tr>
+										<tr>
+											<td>中院</td>
+											<td id="td_avg_centreamounts">0元</td>
+										</tr>
+										<tr>
+											<td>西院</td>
+											<td id="td_avg_westamounts">0元</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="btn-area-week" class="panel panel-primary">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">本周数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="btn-area-term" class="panel panel-green">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">本学期数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="btn-area-all" class="panel panel-yellow">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">所有数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div role="tabpane3" class="tab-pane active" id="shopCharts">
+				<div class="row">
+					<div class="col-lg-8">
+						<div id="container_shopdata"></div>
+						<div id="container_shoptime"></div>
+					</div>
+					<div class="col-lg-4">
+						<div class="col-lg-12 col-md-9">
+							<h4>我在东院消费的商铺</h4>
+							<div class="table-responsive">
+								<table id="table-east" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>商铺名称</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+											<th>单笔消费</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+							<h4>我在中院消费的商铺</h4>
+							<div class="table-responsive">
+								<table id="table-center"
+									class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>商铺名称</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+											<th>单笔消费</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+							<h4>我在西院消费的商铺</h4>
+							<div class="table-responsive">
+								<table id="table-west" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>商铺名称</th>
+											<th>消费金额</th>
+											<th>消费次数</th>
+											<th>单笔消费</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+							<div id="btn-list-week" class="panel panel-primary">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">本周数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="btn-list-term" class="panel panel-green">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">本学期数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="btn-list-all" class="panel panel-yellow">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<span class="glyphicon glyphicon-list-alt huge"
+												aria-hidden="true">&nbsp</span>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">所有数据</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/panel-->
+</div>
+
+
+<input type="hidden" value=$!userNumber name="userNumber"
+	id="userNumber">
+#define($js)
+<!-- <script type="text/javascript"
+	src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script> -->
+<script type="text/javascript"
+	src="http://cdn.hcharts.cn/highcharts/4.0.3/highcharts.js"></script>
+<script type="text/javascript"
+	src="http://cdn.hcharts.cn/highcharts/4.0.3/modules/exporting.js"></script>
+<script type="text/javascript"
+	src="http://cdn.hcharts.cn/highcharts/4.0.3/highcharts-3d.js"></script>
+<script src="../assets/js/nuist/jquery.mobile.custom.min.js"></script>
+<script src="../assets/js/nuist/history.min.js"></script>
+<script src="../assets/js/jquery.validate.js"></script>
+<script src="../assets/js/nuist/base64.min.js"></script>
+#end

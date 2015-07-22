@@ -1,0 +1,38 @@
+<!-- 下面这个layout的设置是可以省略的，因为配置中已经将其设置为默认。如果使用其它的布局就使用下面的set方式更改 -->
+#set($layout = "default.html")
+<!-- 下面是设置使用的布局页面default.html中的变量，如果这些变量已经在controller中指定，则这里也可以省略 -->
+#set($title="这里是标题啊~")
+#set($seo_kwd="这里是关键词哦！")
+<!-- 下面是该页面需要单独引用的页面片段，如果不需要，则可以省略！ -->
+#parse("layout/_top.html")
+<!-- 下面是页面的正文内容 -->
+	<table border="1" cellpadding="0" cellspacing="0" class="tableV">
+      <tr>
+        <th>类型:</th>
+        <td>
+        	<!-- 下面这个输出是一个类型数据，可以通过在tools.xml中定义自己的类型解析工具来显示之 -->
+          ${demo.matchType}<br>
+		  <!-- 上面的类型使用自定义的tool类可类似使用如下，其中escape就是调用EscapeTool类 $!escape.html(${demo.matchType}) -->
+        </td>
+      </tr>
+      <tr>
+        <th>内容:</th>
+		<!-- 至此，注意$符号的输出方式有两种，都是可以的：${xx.yy}和$xx.yy -->
+        <td>$!demo.sourceValue</td>
+      </tr>
+	  <tr>
+        <th>adder_name:</th>
+		<!-- 至此，注意$符号的输出方式有两种，都是可以的：${xx.yy}和$xx.yy -->
+        <td>$!demo.adderName</td>
+      </tr>
+	  <tr>
+        <th>addTime:</th>
+		<!-- 至此，注意$符号的输出方式有两种，都是可以的：${xx.yy}和$xx.yy -->
+        <td>$!demo.addTime</td>
+      </tr>
+	  <tr>
+        <th>lastUpdaterName:</th>
+		<!-- 至此，注意$符号的输出方式有两种，都是可以的：${xx.yy}和$xx.yy -->
+        <td>$!demo.lastUpdaterName</td>
+      </tr>
+	 </table>

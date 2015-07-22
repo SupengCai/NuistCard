@@ -1,0 +1,82 @@
+﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
+<link href="../assets/css/nuist/index.css" rel="stylesheet">
+#end
+<div class="col-lg-12 col-md-6">
+	<div id="row-ad" class="row">
+		<div class="col-lg-12">
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				温馨提示：成绩查询功能目前仅支持<b>本科生</b>使用
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12 col-md-6">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>
+						<span class="glyphicon glyphicon-calendar" aria-hidden="true">&nbsp</span>成绩查询
+					</h4>
+				</div>
+				<div id="div-score" class="panel-body">
+
+					<!-- <h4><span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp</span>2012-2013学年 上学期</h4><table class="table  table-hover"><tbody><tr><th><h4>课程</h4></th><th><h4>成绩</h4></th><th><h4>学分</h4></th></tr>
+						 <tr><td><h4>英语1</h4></td><td><h4>99</h4></td><td><h4>2</h4></td></tr>
+						
+					</tbody></table> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="table-responsive">
+				<table id="table-score" class="table table-bordered">
+					<thead>
+						<tr>
+							<th>学分统计</th>
+							<th>学分</th>
+							<th>绩点</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+							<td>总计</td>
+							<td>0</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table-responsive">
+				<table id="table-failed" class="table table-bordered">
+					<thead>
+						<tr>
+							<th>挂科统计</th>
+							<th>数量</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>总计</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-lg btn-block" id="btn-score">查询成绩</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/panel-->
+<input type="hidden" value=$!userNumber name="userNumber"
+	id="userNumber">
+#define($js)
+<script src="../assets/js/jquery.cookie.js"></script>
+<script src="../assets/js/nuist/base64.min.js"></script>
+<script src="../assets/js/nuist/score.min.js"></script>
+#end
+
