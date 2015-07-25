@@ -1,12 +1,9 @@
 package com.linklife.controller;
 
-import java.text.SimpleDateFormat;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.linklife.domain.ibator.AccountInfo;
 import com.linklife.domain.ibator.AlertModel;
 import com.linklife.domain.model.AccountLoginModel;
 import com.linklife.domain.model.AccountSuggestModel;
@@ -25,9 +21,7 @@ import com.linklife.service.impl.ActionLogServiceImpl;
 import com.linklife.service.impl.NuistServiceImpl;
 import com.linklife.web.base.utils.CodeConvert;
 import com.linklife.web.base.utils.ContextUtils;
-import com.linklife.web.base.utils.RegexUtil;
 import com.linklife.web.httpapi.CookieTool;
-import com.linklife.web.httpapi.TaoBaoIPAPI;
 
 /**
  * <p>
@@ -60,7 +54,6 @@ public class CommonController {
 	 * 
 	 * @return
 	 */
-	@SuppressWarnings( "rawtypes" )
 	@RequestMapping( "/index" )
 	public String index( HttpServletRequest request, HttpServletResponse response, Model model, Integer signout ) {
 

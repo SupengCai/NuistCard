@@ -14,9 +14,9 @@
 			targetProject="link-life-ibator-generated" />
 		<daoGenerator targetPackage="com.linklife.dao"
 			targetProject="link-life-ibator-generated" type="GENERIC-CI" />
-		<table schema="linklife" tableName="nuist_info"
-			domainObjectName="NuistInfo">
-			<generatedKey column="account_id" sqlStatement="MySql"
+		<table schema="linklife" tableName="nuist_chat"
+			domainObjectName="NuistChat">
+			<generatedKey column="chat_id" sqlStatement="MySql"
 				identity="true" />
 		</table>
 		<!--<table schema="linklife" tableName="account_login" domainObjectName="accountLogin"> 

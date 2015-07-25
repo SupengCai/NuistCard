@@ -21,7 +21,7 @@
 	<task:scheduled-tasks>
 		<!-- ���õ���autoClearHttpClientsTrigger �������еķ���execute -->
 		<task:scheduled ref="autoClearHttpClientsTrigger"
-			method="execute" cron="0 0/5 7-23 * * ?" />
+			method="execute" cron="0 0/10 7-23 * * ?" />
 	</task:scheduled-tasks>
 
 	<!-- ������ö���͵��ö���ķ��� -->

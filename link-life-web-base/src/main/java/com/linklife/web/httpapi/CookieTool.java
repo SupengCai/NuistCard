@@ -16,6 +16,7 @@ public class CookieTool {
 	public static final String COOKIE_USER_REMEMBER = "USER_REMEMBER";
 	public static final String COOKIE_FIRST_PAGE = "FIRST_PAGE";
 	public static final String COOKIE_API_OBJ = "API_OBJ";
+	public static final String COOKIE_STATE_OFFLINE = "OFF_LINE";
 
 
 	/**

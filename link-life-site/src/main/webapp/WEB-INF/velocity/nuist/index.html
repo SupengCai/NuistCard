@@ -39,8 +39,12 @@
 			<div class="alert alert-info alert-dismissable">
 				<button type="button" class="close" data-dismiss="alert"
 					aria-hidden="true">&times;</button>
-				公告：关注南信一卡通<a href="wechatQR" class="alert-link">微信公众号</a>登陆更方便，同时可获取更多网站相关内容，也可访问<a
+				#if(!$offline) 注意：由于管网无法登陆，现处于离线模式，部分功能无法使用。关注南信一卡通<a
+					href="wechatQR" class="alert-link">微信公众号</a>登陆更方便。 #else 公告：关注南信一卡通<a
+					href="wechatQR" class="alert-link">微信公众号</a>登陆更方便，同时可获取更多网站相关内容，也可访问<a
 					href="http://ucard.nuist.edu.cn:8070/Home/Index" class="alert-link">官方网站</a>获取服务。
+				#end
+
 			</div>
 		</div>
 	</div>
@@ -66,7 +70,48 @@
 		</a>
 	</div>
 </div>
-#end
+#end #if($offline)
+<div class="col-lg-5 col-md-6">
+	<div id="btn-ranklist" class="panel panel-yellow">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-list huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">排行榜</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+<div class="col-lg-5 col-md-6">
+	<div id="btn-suggest" class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<span class="glyphicon glyphicon-envelope huge" aria-hidden="true">&nbsp</span>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">意见反馈</div>
+				</div>
+			</div>
+		</div>
+		<a href="#">
+			<div class="panel-footer">
+				<span class="pull-right">点击进入</span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div>
+#else
 <div class="col-lg-5 col-md-6">
 	<div id="btn-recharge" class="panel panel-primary">
 		<div class="panel-heading">
@@ -208,7 +253,7 @@
 		</a>
 	</div>
 </div>
-#if($signined)
+#end #if($signined)
 <div class="col-lg-5 col-md-6">
 	<div id="btn-signout" class="panel panel-green">
 		<div class="panel-heading">

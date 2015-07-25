@@ -21,7 +21,7 @@
 	<task:scheduled-tasks>
 		<!-- 调用的类autoClearHttpClientsTrigger 调用类中的方法execute -->
 		<task:scheduled ref="autoClearHttpClientsTrigger"
-			method="execute" cron="0 0/5 7-23 * * ?" />
+			method="execute" cron="0 0/10 7-23 * * ?" />
 	</task:scheduled-tasks>
 
 	<!-- 定义调用对象和调用对象的方法 -->
