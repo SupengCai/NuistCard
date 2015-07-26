@@ -249,7 +249,7 @@
 		<![CDATA[
 		select a.usernumber, a.account_id, a.password, a.statistics_type, a.score_type
 		from nuist_login a, nuist_info b
-		where score_type = #type:INTEGER# and b.education='本科生' 
+		where score_type = #type:INTEGER# and b.education='本科�?' 
 		and a.account_id=b.account_id
 		]]>
 	</select>
@@ -259,7 +259,7 @@
 		<![CDATA[
 		select a.usernumber, a.account_id, a.password, a.statistics_type, a.score_type
 		from nuist_login a, nuist_info b
-		where statistics_type = #type:INTEGER# and b.education='本科生' 
+		where statistics_type = #type:INTEGER# and b.education='本科�?' 
 		and a.account_id=b.account_id
 		]]>
 	</select>

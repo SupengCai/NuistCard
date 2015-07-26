@@ -9,14 +9,14 @@
          http://www.springframework.org/schema/context/spring-aspect-3.0.xsd
          http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/context/spring-aop-3.0.xsd">
-	<!-- 这里是为整个所有引用的xml文件中可能使用系统变量而做的全局配置：context.properties <context:property-placeholder
+	<!-- 这里是为整个�?有引用的xml文件中可能使用系统变量�?�做的全�?配置：context.properties <context:property-placeholder
 		location="classpath:/context/properties/context.properties" /> -->
 	<!-- 这里面存放import的组织方式，不存放任何具体的配置信息 -->
 
 	<!-- DataSource配置 -->
 	<import resource="datasource/datasource.xml" />
 
-	<!-- 加载特别定义的类的配置 -->
+	<!-- 加载特别定义的类的配�? -->
 	<import resource="bean/bean-context.xml" />
 
 	<!-- acegi权限配置-->
@@ -25,13 +25,13 @@
 	<!-- Redis配置
 	<import resource="bean/redis.xml" /> -->
 	
-	<!-- 定时触发器配置-->
+	<!-- 定时触发器配�?-->
 	<import resource="trigger/trigger.xml" />
-	<!-- 领域模型的配置 <import resource="domain/aspectj.xml" /> -->
+	<!-- 领域模型的配�? <import resource="domain/aspectj.xml" /> -->
 
-	<!-- 下面需要加载的内容请根据本项目的实际情况加载 -->
+	<!-- 下面�?要加载的内容请根据本项目的实际情况加�? -->
 
-	<!-- 验证框架的配置 <import resource="validator/focusvalidator-config.xml" /> -->
+	<!-- 验证框架的配�? <import resource="validator/focusvalidator-config.xml" /> -->
 
 	<!-- 加载邮件组件 <import resource="classpath:/context/notification/notification-context.xml"
 		/> -->

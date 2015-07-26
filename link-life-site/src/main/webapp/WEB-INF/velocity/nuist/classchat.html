@@ -25,7 +25,7 @@
 				</div>
 				<div class="panel-body">
 					<ul>
-						<li class="message-preview">
+						<li id="1111" class="message-preview">
 							<div class="media">
 								<div class="media-body">
 									<h5 class="media-heading">蔡苏鹏</h5>
@@ -50,7 +50,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="message-preview">
+						<li id="1112" class="message-preview">
 							<div class="media">
 								<div class="media-body">
 									<h5 class="media-heading">齐鲁</h5>
@@ -189,10 +189,10 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<form id="form-signin" class="navbar-form navbar-right">
 				<div class="form-group">
-					<textarea id="account" name="account" class="form-control" rows="2"></textarea>
+					<textarea id="chatmsg" name="account" class="form-control" rows="2"></textarea>
 				</div>
 				<div class="form-group">
-					<button id="btn-login" class="btn btn-lg btn-primary btn-block"
+					<button id="btn-chat" class="btn btn-lg btn-primary btn-block"
 						type="button">发送消息</button>
 				</div>
 			</form>
@@ -214,13 +214,13 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<textarea id="chatmsg" name="account" class="form-control" rows="3"></textarea>
+					<textarea id="replymsg" name="account" class="form-control" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default closemodal"
 					data-dismiss="modal">关闭</button>
-				<button id="btn-chat" class="btn btn-primary" type="button">发送消息</button>
+				<button id="btn-replychat" class="btn btn-primary" type="button">发送消息</button>
 			</div>
 		</div>
 	</div>

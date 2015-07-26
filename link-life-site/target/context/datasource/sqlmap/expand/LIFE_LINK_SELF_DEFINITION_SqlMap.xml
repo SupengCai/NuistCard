@@ -3,7 +3,7 @@
 <sqlMap namespace="ABIZ_SELF_DEFINITION">
 
 
-  <!-- 附件需要blob字段 -->
+  <!-- 附件�?要blob字段 -->
   <resultMap id="attachment_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.CoreAttachment"
     extends="CORE_ATTACHMENT.ibatorgenerated_ResultMapWithBLOBs">
   </resultMap>
@@ -16,7 +16,7 @@
   <resultMap id="certificate_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.CoreCertificatePhotoWithBLOBs" extends="CORE_CERTIFICATE_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
   </resultMap>
 
-  <!-- 询价单物品图片-->
+  <!-- 询价单物品图�?-->
   <resultMap id="inquiry_prod_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.InquiryProdPhotoWithBLOBs" extends="INQUIRY_PROD_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
   </resultMap>
 
@@ -28,7 +28,7 @@
   <resultMap id="brand_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.BrandPhotoWithBLOBs" extends="BRAND_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
   </resultMap>
 
-  <!-- 标准品图片-->
+  <!-- 标准品图�?-->
   <resultMap id="merchandise_photo_ibatorgenerated_BaseResultMap" class="com.focustech.abiz.buy.entity.MerchandisePhotoWithBLOBs" extends="MERCHANDISE_PHOTO.ibatorgenerated_ResultMapWithBLOBs">
   </resultMap>
 
@@ -202,7 +202,7 @@ select *
 	</select>
 
 
-	<!-- 查询公司图片（FFS）-->
+	<!-- 查询公司图片（FFS�?-->
 	<select id="listCompanyPhotos4FFS"   resultMap="company_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 
@@ -232,7 +232,7 @@ select *
 	</select>
 
 
-	<!-- 查询公司证书图片（FFS）-->
+	<!-- 查询公司证书图片（FFS�?-->
 	<select id="listCertificatePhotos4FFS"   resultMap="certificate_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 
@@ -261,7 +261,7 @@ select *
 		]]>
 	</select>
 
-	<!-- 查询询价单物品图片（FFS）-->
+	<!-- 查询询价单物品图片（FFS�?-->
 	<select id="listInquiryProdPhotos4FFS"   resultMap="inquiry_prod_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 
@@ -291,7 +291,7 @@ select *
 	</select>
 
 
-	<!-- 查询报价物品图片（FFS）-->
+	<!-- 查询报价物品图片（FFS�?-->
 	<select id="listQuotationProdPhotos4FFS"   resultMap="quotation_prod_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 
@@ -321,7 +321,7 @@ select *
 	</select>
 
 
-	<!-- 查询品牌图片（FFS）-->
+	<!-- 查询品牌图片（FFS�?-->
 	<select id="listBrandPhotos4FFS"   resultMap="brand_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 
@@ -351,7 +351,7 @@ select *
 	</select>
 
 
-	<!-- 查询标准品图片（FFS）-->
+	<!-- 查询标准品图片（FFS�?-->
 	<select id="listMerchandisePhotos4FFS"   resultMap="merchandise_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 
@@ -369,7 +369,7 @@ select *
 		]]>
 	</select>
 
-	<!-- banner推荐图片（FFS）-->
+	<!-- banner推荐图片（FFS�?-->
 	<select id="listBannerRecommendPhotos4FFS"   resultMap="banner_recommend_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 select *
@@ -385,7 +385,7 @@ select *
 		]]>
 	</select>
 
-	<!-- 申请成为大买家供应商（FFS）-->
+	<!-- 申请成为大买家供应商（FFS�?-->
 	<select id="listEfpgApplyPhotos4FFS"   resultMap="efpg_apply_photo_ibatorgenerated_BaseResultMap">
 		<![CDATA[
 
@@ -410,7 +410,7 @@ select *
 		]]>
 	</select>
 
-	<!-- 查询采购需求关键词和目录码数据-->
+	<!-- 查询采购�?求关键词和目录码数据-->
 	<select id="listDemandKeywords4Redis"   resultClass="java.util.HashMap">
 		<![CDATA[
 
@@ -430,7 +430,7 @@ SELECT to_char(A.KEYWORD_ID) KEYWORD_ID,
 		]]>
 	</select>
 
-	<!-- 统计当天大买家采购需求个数 -->
+	<!-- 统计当天大买家采购需求个�? -->
 	 <select id="countCurrentEfpgDemandNum"  resultClass="int">
 
 	 <![CDATA[

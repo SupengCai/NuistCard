@@ -334,7 +334,7 @@
 		<![CDATA[
 		select a.shop_name,sum(a.trade_amount) as amounts ,count(a.shop_name) as times,ROUND(AVG(a.trade_amount),1) as average
 		from linklife.nuist_trade_history a 
-		where a.trade_type=1 and a.shop_name like 'ä¸œ%'
+		where a.trade_type=1 and a.shop_name like 'ä¸?%'
 		GROUP BY a.shop_name 
 		ORDER BY amounts 
 		DESC 
@@ -346,7 +346,7 @@
 		<![CDATA[
 		select a.shop_name,sum(a.trade_amount) as amounts ,count(a.shop_name) as times,ROUND(AVG(a.trade_amount),1) as average
 		from linklife.nuist_trade_history a 
-		where a.trade_type=1 and a.shop_name like 'ä¸­%'
+		where a.trade_type=1 and a.shop_name like 'ä¸?%'
 		GROUP BY a.shop_name 
 		ORDER BY amounts 
 		DESC 
@@ -358,7 +358,7 @@
 		<![CDATA[
 		select a.shop_name,sum(a.trade_amount) as amounts ,count(a.shop_name) as times,ROUND(AVG(a.trade_amount),1) as average
 		from linklife.nuist_trade_history a 
-		where a.trade_type=1 and a.shop_name like 'è¥¿%'
+		where a.trade_type=1 and a.shop_name like 'è¥?%'
 		GROUP BY a.shop_name 
 		ORDER BY amounts 
 		DESC 
@@ -385,7 +385,7 @@
 		select a.shop_name,sum(a.trade_amount) as amounts ,count(a.shop_name) as times,ROUND(AVG(a.trade_amount),1) as average
 		from linklife.nuist_trade_history a 
 		where a.trade_type=1 
-		and a.shop_name like 'ä¸œ%' 
+		and a.shop_name like 'ä¸?%' 
 		and a.user_number=
 		#userNumber:VARCHAR#
 		GROUP BY a.shop_name 
@@ -401,7 +401,7 @@
 		select a.shop_name,sum(a.trade_amount) as amounts ,count(a.shop_name) as times,ROUND(AVG(a.trade_amount),1) as average
 		from linklife.nuist_trade_history a 
 		where a.trade_type=1 
-		and a.shop_name like 'ä¸­%' 
+		and a.shop_name like 'ä¸?%' 
 		and a.user_number=
 		#userNumber:VARCHAR#
 		GROUP BY a.shop_name 
@@ -417,7 +417,7 @@
 		select a.shop_name,sum(a.trade_amount) as amounts ,count(a.shop_name) as times,ROUND(AVG(a.trade_amount),1) as average
 		from linklife.nuist_trade_history a 
 		where a.trade_type=1 
-		and a.shop_name like 'è¥¿%' 
+		and a.shop_name like 'è¥?%' 
 		and a.user_number=
 		#userNumber:VARCHAR#
 		GROUP BY a.shop_name 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.linklife.domain.model.NuistChatModel;
 import com.linklife.domain.model.NuistClassModel;
 import com.linklife.domain.model.NuistCourseModel;
 import com.linklife.domain.model.NuistInfoModel;
@@ -73,6 +74,10 @@ public class Nuist {
 	/** 专业相关业务类 */
 	@Autowired
 	private NuistClassModel nuistClassModel;
+
+	/** 聊天相关业务类 */
+	@Autowired
+	private NuistChatModel nuistChatModel;
 
 
 	public NuistLoginModel getNuistLoginModel() {
@@ -192,6 +197,18 @@ public class Nuist {
 	public void setNuistClassModel( NuistClassModel nuistClassModel ) {
 
 		this.nuistClassModel = nuistClassModel;
+	}
+
+
+	public NuistChatModel getNuistChatModel() {
+
+		return nuistChatModel;
+	}
+
+
+	public void setNuistChatModel( NuistChatModel nuistChatModel ) {
+
+		this.nuistChatModel = nuistChatModel;
 	}
 
 }

@@ -33,7 +33,7 @@
 
 	<mvc:annotation-driven />
 
-	<!-- 静态资源映射 -->
+	<!-- 静�?�资源映�? -->
 	<mvc:default-servlet-handler />
 
 	<!-- 启动AspectJ支持 -->
@@ -46,17 +46,17 @@
 		<property name="configLocation"
 			value="classpath:/context/velocity/velocity.properties" />
 	</bean>
-	<!-- View层定义 Velocity-Sample <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> 
+	<!-- View层定�? Velocity-Sample <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> 
 		<property name="suffix" value=".html" /> <property name="contentType" value="text/html" 
 		/> </bean> -->
-	<!-- View层定义 -->
+	<!-- View层定�? -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<!-- 在没有扩展名时即: "/user/1" 时的默认展现形式 -->
 		<property name="defaultContentType" value="text/html" />
-		<!-- 设置为true以忽略对Accept Header的支持 -->
+		<!-- 设置为true以忽略对Accept Header的支�? -->
 		<property name="ignoreAcceptHeader" value="true" />
-		<!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
+		<!-- 扩展名至mimeType的映�?,�? /user.json => application/json -->
 		<property name="mediaTypes">
 			<map>
 				<entry key="json" value="application/json" />
@@ -101,10 +101,10 @@
 		</property>
 	</bean>
 
-	<!-- SpringMVC上传文件，MultipartResolver处理器 -->
+	<!-- SpringMVC上传文件，MultipartResolver处理�? -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- 指定所上传文件的总大小不能超过200000KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+		<!-- 指定�?上传文件的�?�大小不能超�?200000KB。注意maxUploadSize属�?�的限制不是针对单个文件，�?�是�?有文件的容量之和 -->
 		<property name="maxUploadSize" value="200000000" />
 	</bean>
 

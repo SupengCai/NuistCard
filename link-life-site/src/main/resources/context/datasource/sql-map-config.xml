@@ -24,6 +24,7 @@
 	<sqlMap resource="context/datasource/sqlmap/nuist_shop_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/nuist_course_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/nuist_class_SqlMap.xml" />
+	<sqlMap resource="context/datasource/sqlmap/nuist_chat_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/daily_check_account_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/daily_check_issues_SqlMap.xml" />
 	<sqlMap resource="context/datasource/sqlmap/daily_check_update_SqlMap.xml" />

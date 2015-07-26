@@ -82,10 +82,10 @@
 		<property name="accessDecisionManager">
 			<ref local="accessDecisionManager" />
 		</property>
-		<!-- 将url与访问的用户组对应 -->
+		<!-- 将url与访问的用户组对�? -->
 		<property name="objectDefinitionSource">
 			<value>
-				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON  <!-- 将url全部转化为小写 -->
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON  <!-- 将url全部转化为小�? -->
 				PATTERN_TYPE_APACHE_ANT   <!-- 以ANT形式配置路径 -->
 				/**account/**=PRIV_COMMON
 			</value>

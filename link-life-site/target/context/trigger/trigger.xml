@@ -6,10 +6,10 @@
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
     http://www.springframework.org/schema/task  
     http://www.springframework.org/schema/task/spring-task-3.0.xsd">
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ xmlns:task="http://www.springframework.org/schema/task" http://www.springframework.org/schema/task 
+	<!-- ÕâÀï¼ÓÈëÁË xmlns:task="http://www.springframework.org/schema/task" http://www.springframework.org/schema/task 
 		http://www.springframework.org/schema/task/spring-task-3.0.xsd -->
 
-	<!-- ï¿½ï¿½Ê±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½Ê±ï¿½ï¿½Òªï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Ê±Æ÷ Õâ¸öÊÇ¶¨Ê±Æ÷Òªµ÷ÓÃ·½·¨µÄÀà -->
 	<bean id="autoClearHttpClientsTrigger" class="com.linklife.trigger.AutoClearHttpClientsTrigger"></bean>
 	<bean id="autoDefineParamsTrigger" class="com.linklife.trigger.AutoDefineParamsTrigger"></bean>
 	<bean id="autoRecordHistoryDataTrigger" class="com.linklife.trigger.AutoRecordHistoryDataTrigger"></bean>
@@ -17,45 +17,45 @@
 	<bean id="autoRecordScoreHistoryTrigger" class="com.linklife.trigger.AutoRecordScoreHistoryTrigger"></bean>
 	
 
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Íµï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Òåµ÷ÓÃ¶ÔÏóºÍµ÷ÓÃ¶ÔÏóµÄ·½·¨ -->
 	<task:scheduled-tasks>
-		<!-- ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½autoClearHttpClientsTrigger ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ·ï¿½ï¿½ï¿½execute -->
+		<!-- µ÷ÓÃµÄÀàautoClearHttpClientsTrigger µ÷ÓÃÀàÖÐµÄ·½·¨execute -->
 		<task:scheduled ref="autoClearHttpClientsTrigger"
 			method="execute" cron="0 0/10 7-23 * * ?" />
 	</task:scheduled-tasks>
 
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Íµï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Òåµ÷ÓÃ¶ÔÏóºÍµ÷ÓÃ¶ÔÏóµÄ·½·¨ -->
 	<task:scheduled-tasks>
-		<!-- ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½autoClearHttpClientsTrigger ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ·ï¿½ï¿½ï¿½execute -->
+		<!-- µ÷ÓÃµÄÀàautoClearHttpClientsTrigger µ÷ÓÃÀàÖÐµÄ·½·¨execute -->
 		<task:scheduled ref="autoClearHttpClientsTrigger"
 			method="execute" cron="0 0/59 0-6 * * ?" />
 	</task:scheduled-tasks>
 	
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Íµï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Òåµ÷ÓÃ¶ÔÏóºÍµ÷ÓÃ¶ÔÏóµÄ·½·¨ -->
 	<task:scheduled-tasks>
 		<task:scheduled ref="autoDefineParamsTrigger" method="execute"
 			cron="0 0 0 * * ?" />
 	</task:scheduled-tasks>
 	
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Íµï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Òåµ÷ÓÃ¶ÔÏóºÍµ÷ÓÃ¶ÔÏóµÄ·½·¨ -->
 	<task:scheduled-tasks>
 		<task:scheduled ref="autoRecordHistoryDataTrigger" method="execute"
 			cron="0 0 5 * * ?" />
 	</task:scheduled-tasks>
 	
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Íµï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Òåµ÷ÓÃ¶ÔÏóºÍµ÷ÓÃ¶ÔÏóµÄ·½·¨ -->
 	<task:scheduled-tasks>
 		<task:scheduled ref="autoRecordMonthHistoryDataTrigger" method="execute"
 			cron="0 0 4 5 * ?" />
 	</task:scheduled-tasks>
 	
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Íµï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Òåµ÷ÓÃ¶ÔÏóºÍµ÷ÓÃ¶ÔÏóµÄ·½·¨ -->
 	<task:scheduled-tasks>
 		<task:scheduled ref="autoRecordScoreHistoryTrigger" method="execute"
 			cron="0 30 5 10 9 ?" />
 	</task:scheduled-tasks>
 	
-	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Íµï¿½ï¿½Ã¶ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ -->
+	<!-- ¶¨Òåµ÷ÓÃ¶ÔÏóºÍµ÷ÓÃ¶ÔÏóµÄ·½·¨ -->
 	<task:scheduled-tasks>
 		<task:scheduled ref="autoRecordScoreHistoryTrigger" method="execute"
 			cron="0 30 5 10 3 ?" />

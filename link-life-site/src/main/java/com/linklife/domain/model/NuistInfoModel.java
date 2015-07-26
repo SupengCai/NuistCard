@@ -60,6 +60,26 @@ public class NuistInfoModel extends NuistInfo<NuistInfo, NuistInfoExample> {
 		}
 	}
 
+	/**
+	 * 根据班级号搜索用户数
+	 * 
+	 * @return NuistInfo
+	 */
+	public int getNumberofPeopleByClassId() {
+
+		try {
+			Integer t = ( Integer )acquiredTargetRepository().getSqlMapClient().queryForObject( "nuist_info.selectNumberofPeopleByClassId", this );
+			if( t != null )
+				return t;
+			else
+				return 0;
+
+		} catch( SQLException e ) {
+			e.printStackTrace();
+			log.error( e.getMessage(), e );
+			throw new RuntimeException( e.getMessage() );
+		}
+	}
 
 	/**
 	 * 填充南信大一卡通用户信息
@@ -110,7 +130,7 @@ public class NuistInfoModel extends NuistInfo<NuistInfo, NuistInfoExample> {
 	public boolean updateNuistInfo( Elements trs ) {
 
 		boolean changed = false;
-		if(trs.isEmpty())
+		if( trs.isEmpty() )
 			return changed;
 		Elements tds_balance = trs.get( 3 ).select( "td" );// 余额
 		Elements tds_balance1 = trs.get( 5 ).select( "td" );// 过度余额1
