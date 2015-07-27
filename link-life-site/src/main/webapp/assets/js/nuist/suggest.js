@@ -33,7 +33,10 @@ $(function() {
 	$("#btn-suggest").click(function() {
 		var parentId = 0;
 		var suggest=$("#suggestmsg").val();
-		if(suggest.length>0){
+		var length=suggest.length;
+		if(length>150){
+			alert("请将建议内容控制在150字以内");
+		} else if(length>0){
 		$.post("suggest", {
 			suggest : suggest,
 			parentId : parentId,
@@ -55,8 +58,12 @@ $(function() {
 		var suggest=$("#replymsg").val();
 		var parentId = $("#parentId").val();
 		var array=suggest.split(': ');
-		if($.trim(array[1])!=""){
-
+		var length=suggest.length;
+		
+		if(length>140){
+			alert("请将回复内容控制在150字以内");
+		}else if($.trim(array[1])!=""){
+			
 		$.post("suggest", {
 			suggest : suggest,
 			parentId : parentId,

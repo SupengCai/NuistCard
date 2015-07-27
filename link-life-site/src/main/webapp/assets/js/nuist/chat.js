@@ -14,7 +14,10 @@ $(function() {
 	$("#btn-chat").click(function() {
 		var parentId = 0;
 		var content=$("#chatmsg").val();
-		if(content.length>0){
+		var length=content.length;
+		if(length>150){
+			alert("请将消息内容控制在150字以内");
+		}else if(length>0){
 		$.post("chat", {
 			content : content,
 			parentId : parentId,
@@ -36,7 +39,10 @@ $(function() {
 		var content=$("#replymsg").val();
 		var parentId = $("#parentId").val();
 		var array=content.split(': ');
-		if($.trim(array[1])!=""){
+		var length=content.length;
+		if(length>140){
+			alert("请将回复内容控制在150字以内");
+		}else if($.trim(array[1])!=""){
 
 		$.post("chat", {
 			content : content,
