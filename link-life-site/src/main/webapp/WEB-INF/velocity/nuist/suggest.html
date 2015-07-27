@@ -1,35 +1,151 @@
 ﻿#set($layout = "layout/nuist/_sidebar.html") #define($css)
 <link href="../assets/css/nuist/index.css" rel="stylesheet">
 #end
-<div class="col-lg-6">
-	<div class="alert alert-info alert-dismissable">
-		<button type="button" class="close" data-dismiss="alert"
-			aria-hidden="true">&times;</button>
-		温馨提示：初始密码需要在机器上修改后才可登录网站，请尝试修改查询密码及充值密码并登录，若仍无法解决，可以向<a
-			href="wechatQR" class="alert-link">微信公众号</a>反馈
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4>
-				<span class="glyphicon glyphicon-envelope" aria-hidden="true">&nbsp</span>意见反馈
-			</h4>
-		</div>
-		<div class="panel-body">
-			<form id="form-suggest" action="suggest" method="post">
-				<div class="form-group">
-					<div class="table-responsive">
-						<textarea name="suggest" id="suggest"
-							class="form-control input-lg" rows="3"
-							placeholder="感谢您对我们提出的宝贵意见"></textarea>
+<div class="col-lg-12 col-md-6">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				温馨提示：初始密码需要在机器上修改后才可登录网站，请尝试修改查询密码及充值密码并登录，若仍无法解决，可以向<a
+					href="wechatQR" class="alert-link">微信公众号</a>反馈
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<i class="glyphicon glyphicon-envelope"></i> 意见反馈
+					</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						#foreach($elem in $parentSuggestList)
+						<li id=$elem.suggestId class="message-preview">
+							<div class="media">
+								<div class="media-body">
+									<h5 class="media-heading">
+									#if($!elem.username)
+										$!elem.username
+									#else
+										访客
+									#end
+									</h5>
+									<p>$elem.suggest</p>
+									<p class="small text-muted">
+										<i class="glyphicon glyphicon-time"></i> $elem.formatTime
+										&nbsp<a>回复</a>
+									</p>
+									<ul>
+										#foreach($e in $childrenSuggestList)
+										#if($e.parentId==$elem.suggestId)
+										<li id=$elem.suggestId>
+											<div class="media">
+												<div class="media-body">
+													<h5 class="small media-heading">
+													#if($!e.username)
+														$!e.username
+													#else
+														访客
+													#end
+													</h5>
+													<p class="small text-muted">$e.suggest</p>
+													<p class="small text-muted">
+														<i class="glyphicon glyphicon-time"></i>$e.formatTime
+														&nbsp<a>回复</a>
+													</p>
+												</div>
+											</div>
+										</li> #end #end
+									</ul>
+								</div>
+							</div>
+						</li> #end
+					</ul>
+					<div class="text-right">
+						<a href="suggest">刷新 <i class="glyphicon glyphicon-refresh"></i></a>
 					</div>
+				</div>
+			</div>
+
+		</div>
+	<!-- 	<div class="col-lg-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>
+						<span class="glyphicon glyphicon-envelope" aria-hidden="true">&nbsp</span>我的意见
+					</h4>
+				</div>
+				<div class="panel-body">
+					<form id="form-suggest" action="suggest" method="post">
+						<div class="form-group">
+							<div class="table-responsive">
+								<textarea name="suggest" id="suggest"
+									class="form-control input-lg" rows="3"
+									placeholder="感谢您对我们提出的宝贵意见"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<button id="btn-suggest" class="btn btn-lg btn-primary btn-block"
+								type="button">发 送</button>
+						</div>
+					</form>
+					<div class="form-group">
+				<a class="btn btn-success btn-lg btn-block" href="index">返 回 主 页</a>
+			</div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+	<div class="container">
+		<div class="navbar-header">
+			<button id="button-login" type="button"
+				class="navbar-toggle collapsed" data-toggle="collapse"
+				data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand">我的意见</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<form id="form-suggest" class="navbar-form navbar-right">
+				<div class="form-group">
+					<textarea id="suggestmsg" name="suggestmsg" class="form-control" rows="2" placeholder="感谢您对我们提出的宝贵意见"></textarea>
 				</div>
 				<div class="form-group">
 					<button id="btn-suggest" class="btn btn-lg btn-primary btn-block"
-						type="button">发 送</button>
+						type="button">发送消息</button>
 				</div>
 			</form>
-			<div class="form-group">
-				<a class="btn btn-success btn-lg btn-block" href="index">返 回 主 页</a>
+		</div>
+	</div>
+</nav>
+
+<div class="modal modal-top" id="suggest-modal">
+	<div class="modal-dialog modal-top">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<span class="glyphicon glyphicon-envelope" aria-hidden="true">&nbsp</span>回复消息
+				</h4>
+			</div>
+			<div class="modal-body">
+				<form id="form-replysuggest" class="form-group">
+					<textarea id="replymsg" name="account" class="form-control" rows="3"></textarea>
+					<input id="parentId" type="text" style="display:none;" value="">
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default closemodal"
+					data-dismiss="modal">关闭</button>
+				<button id="btn-replysuggest" class="btn btn-primary" type="button">发送消息</button>
 			</div>
 		</div>
 	</div>
@@ -37,5 +153,5 @@
 <!--/panel-->
 
 #define($js)
-<script src="../assets/js/nuist/suggest.min.js"></script>
+<script src="../assets/js/nuist/suggest.js"></script>
 #end

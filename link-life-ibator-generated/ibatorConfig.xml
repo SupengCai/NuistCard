@@ -3,7 +3,9 @@
 
 <ibatorConfiguration>
 	<classPathEntry
-		location="D:\Development\maven\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar" />
+		location="/Users/caisupeng/.m2/repository/mysql/mysql-connector-java/5.1.31/mysql-connector-java-5.1.31.jar" />
+		<!-- <classPathEntry
+		location="D:\Development\maven\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar" /> -->
 	<ibatorContext id="contextCoreModel">
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://localhost:3306/linklife" userId="root"
@@ -14,9 +16,9 @@
 			targetProject="link-life-ibator-generated" />
 		<daoGenerator targetPackage="com.linklife.dao"
 			targetProject="link-life-ibator-generated" type="GENERIC-CI" />
-		<table schema="linklife" tableName="nuist_chat"
-			domainObjectName="NuistChat">
-			<generatedKey column="chat_id" sqlStatement="MySql"
+		<table schema="linklife" tableName="nuist_suggest"
+			domainObjectName="NuistSuggest">
+			<generatedKey column="suggest_id" sqlStatement="MySql"
 				identity="true" />
 		</table>
 		<!--<table schema="linklife" tableName="account_login" domainObjectName="accountLogin"> 
