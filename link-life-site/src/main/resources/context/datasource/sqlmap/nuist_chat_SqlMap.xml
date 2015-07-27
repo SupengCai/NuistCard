@@ -268,7 +268,7 @@
 		<![CDATA[
 		select a.chat_id as chatId, a.content, a.username, a.add_time as addTime
 		from nuist_chat a
-		where a.class_id=#classId:INTEGER# AND a.parent_id=0 
+		where a.class_id=#classId:INTEGER# AND a.parent_id=0 AND a.content!=""
 		ORDER BY a.add_time
 		DESC 
 		LIMIT 20
@@ -283,11 +283,11 @@
 		(select t.chat_id from
 		(select b.chat_id
 		from linklife.nuist_chat b 
-		where b.class_id=#classId:INTEGER# AND b.parent_id=0
+		where b.class_id=#classId:INTEGER# AND b.parent_id=0 AND b.content!=""
 		ORDER BY b.add_time
 		DESC 
 		LIMIT 20)
-		 as t )
+		 as t ) AND a.content!=""
 		]]>
 	</select>
 </sqlMap>

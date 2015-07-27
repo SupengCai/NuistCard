@@ -26,6 +26,10 @@ $(function() {
 	$("#btn-score").click(function() {
 		window.location.replace("score");
 	});
+	
+	$("#btn-chat").click(function() {
+		window.location.replace("chat");
+	});
 
 	$("#btn-changepwd").click(function() {
 		window.location.replace("changepwd");

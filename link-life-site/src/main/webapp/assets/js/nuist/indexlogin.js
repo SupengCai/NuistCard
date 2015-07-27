@@ -22,6 +22,14 @@ $(function() {
 	$("#btn-info").click(function() {
 		window.location.replace("nuist/info");
 	});
+	
+	$("#btn-score").click(function() {
+		window.location.replace("nuist/score");
+	});
+	
+	$("#btn-chat").click(function() {
+		window.location.replace("nuist/chat");
+	});
 
 	$("#btn-changepwd").click(function() {
 		window.location.replace("nuist/changepwd");

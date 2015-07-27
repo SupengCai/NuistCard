@@ -21,6 +21,9 @@ public class RegexUtil {
 	/** 过滤'img'标签内容 */
 	public static final Pattern HTML_TAG_IMG_SHORT = Pattern.compile( "<img[^>]*?>" );
 	public static final Pattern HTML_TAG_IMG = Pattern.compile( "<img[^>]*?>.*?</img>" );
+	/** 过滤'script'标签内容 */
+	public static final Pattern HTML_TAG_SCRIPT_SHORT = Pattern.compile( "<script[^>]*?>" );
+	public static final Pattern HTML_TAG_SCRIPT = Pattern.compile( "<script[^>]*?>.*?</script>" );
 	/** 过滤'input'标签内容 */
 	public static final Pattern HTML_TAG_INPUT_SHORT = Pattern.compile( "<input[^>]*?>" );
 	public static final Pattern HTML_TAG_INPUT = Pattern.compile( "<input[^>]*?>.*?</input>" );
@@ -178,6 +181,22 @@ public class RegexUtil {
 		return mat.replaceAll( "" );
 	}
 
+	/**
+	 * 过滤字符串中'script'标签内容
+	 * 
+	 * @return this
+	 */
+	public static String scriptTagFilter(String regexStr) {
+
+		if( StringUtils.isEmpty( regexStr ) ) {
+			return "";
+		}
+		Matcher mat = HTML_TAG_SCRIPT.matcher( regexStr );
+		regexStr = mat.replaceAll( "" );
+		mat = HTML_TAG_SCRIPT_SHORT.matcher( regexStr );
+		regexStr = mat.replaceAll( "" );
+		return regexStr;
+	}
 
 	/**
 	 * 过滤字符串中'img'标签内容
@@ -190,6 +209,23 @@ public class RegexUtil {
 			return this;
 		}
 		Matcher mat = HTML_TAG_IMG.matcher( regexStr );
+		this.regexStr = mat.replaceAll( "" );
+		return this;
+	}
+	
+	/**
+	 * 过滤字符串中'script'标签内容
+	 * 
+	 * @return this
+	 */
+	public RegexUtil scriptTagFilter() {
+
+		if( StringUtils.isEmpty( regexStr ) ) {
+			return this;
+		}
+		Matcher mat = HTML_TAG_SCRIPT.matcher( regexStr );
+		this.regexStr = mat.replaceAll( "" );
+		mat = HTML_TAG_SCRIPT_SHORT.matcher( regexStr );
 		this.regexStr = mat.replaceAll( "" );
 		return this;
 	}

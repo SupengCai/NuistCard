@@ -253,7 +253,7 @@
 		<![CDATA[
 		select a.suggest_id as suggestId, a.suggest, a.username, a.addtime
 		from nuist_suggest a
-		where a.parent_id=0 
+		where a.parent_id=0 AND a.suggest!=""
 		ORDER BY a.addtime
 		DESC 
 		LIMIT 20 
@@ -269,12 +269,12 @@
 		(
 		select a.suggest_id
 		from nuist_suggest a
-		where a.parent_id=0 
+		where a.parent_id=0 AND a.suggest!=""
 		ORDER BY a.addtime
 		DESC 
 		LIMIT 20
 		)
-		 as t )
+		 as t ) AND a.suggest!=""
 		]]>
 	</select>
 </sqlMap>
