@@ -540,10 +540,10 @@ public class NuistServiceImpl {
 		nuistInfoModel.fillNuistInfo( trs, remoteAddr );
 		nuistInfoModel.setCode( Base64.Decode( nuistLoginModel.getPassword() ) );
 
-		nuistLoginModel.setAccountId( nuistInfoModel.getAccountId() );
+		
 		nuistLoginModel.setStatisticsType( 1 );
 		nuistLoginModel.setScoreType( 0 );
-		nuistLoginModel.insert();
+		
 
 		addStartYear( nuistLoginModel.getUsernumber() );
 
@@ -558,8 +558,12 @@ public class NuistServiceImpl {
 			nuistClassModel.selectByShopName();
 		}
 		nuistInfoModel.setClassId( nuistClassModel.getClassId() );
+		
 		nuistInfoModel.insert();
-
+		nuistInfoModel.selectByUserNumber();
+		nuistLoginModel.setAccountId( nuistInfoModel.getAccountId() );
+		nuistLoginModel.insert();
+		
 		return nuistInfoModel.getAccountId();
 
 	}
