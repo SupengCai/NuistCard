@@ -9,8 +9,9 @@
          http://www.springframework.org/schema/context/spring-aspect-3.0.xsd
          http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/context/spring-aop-3.0.xsd">
-	<!-- 这里是为整个所有引用的xml文件中可能使用系统变量而做的全局配置：context.properties <context:property-placeholder
-		location="classpath:/context/properties/context.properties" /> -->
+	<!-- 这里是为整个所有引用的xml文件中可能使用系统变量而做的全局配置：context.properties -->
+	<context:property-placeholder
+		location="classpath:/context/properties/context.properties" />
 	<!-- 这里面存放import的组织方式，不存放任何具体的配置信息 -->
 
 	<!-- DataSource配置 -->
@@ -19,13 +20,13 @@
 	<!-- 加载特别定义的类的配置 -->
 	<import resource="bean/bean-context.xml" />
 
-	<!-- acegi权限配置-->
+	<!-- acegi权限配置 -->
 	<import resource="servlet/acegi.xml" />
-	
-	<!-- Redis配置
-	<import resource="bean/redis.xml" /> -->
-	
-	<!-- 定时触发器配置-->
+
+	<!-- Redis配置 -->
+	<import resource="bean/redis.xml" />
+
+	<!-- 定时触发器配置 -->
 	<import resource="trigger/trigger.xml" />
 	<!-- 领域模型的配置 <import resource="domain/aspectj.xml" /> -->
 
@@ -33,14 +34,14 @@
 
 	<!-- 验证框架的配置 <import resource="validator/focusvalidator-config.xml" /> -->
 
-	<!-- 加载邮件组件 <import resource="classpath:/context/notification/notification-context.xml"
+	<!-- 加载邮件组件 <import resource="classpath:/context/notification/notification-context.xml" 
 		/> -->
 
-	<!-- 加载远程调用模块 <import resource="classpath:/context/remote/remote-context.xml"
+	<!-- 加载远程调用模块 <import resource="classpath:/context/remote/remote-context.xml" 
 		/> -->
-	<!-- spring security <import resource="classpath:/context/security/security.xml"
+	<!-- spring security <import resource="classpath:/context/security/security.xml" 
 		/> -->
-	<!-- 加载公共工具相关的一些配置，如大区与省份关系、行业与目录码关系等 <import resource="classpath:/context/resource/common_bean_config.xml"
+	<!-- 加载公共工具相关的一些配置，如大区与省份关系、行业与目录码关系等 <import resource="classpath:/context/resource/common_bean_config.xml" 
 		/> -->
 
 </beans>

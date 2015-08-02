@@ -1,7 +1,6 @@
 package com.linklife.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +44,8 @@ public class NuistController {
 	/** 南信大一卡通相关业务类 */
 	@Autowired
 	private NuistServiceImpl nuistServiceImpl;
+
+	
 
 	protected static Log log = LogFactory.getLog( "NuistController" );
 
@@ -558,7 +559,7 @@ public class NuistController {
 	 */
 	@RequestMapping( "/test" )
 	public String test() {
-
+		nuistServiceImpl.test();
 		return "nuist/test";
 	}
 

@@ -18,7 +18,7 @@
 	<context:component-scan base-package="com.linklife.domain" />
 	<context:component-scan base-package="com.linklife.repository.base" />
 	<context:component-scan base-package="com.linklife.trigger" />
-
+	<context:component-scan base-package="com.linklife.redis" />
 	<!--读取配置文件 <bean id="messageUtils" class="com.focustech.common.utils.MessageUtils" 
 		init-method="init"> <property name="validateResource" value="classpath:/context/properties/validation.properties"> 
 		</property> <property name="exceptionResource" value="classpath:/context/properties/exception.properties"> 

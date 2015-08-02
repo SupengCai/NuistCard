@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-         http://www.springframework.org/schema/context
-         http://www.springframework.org/schema/context/spring-context-3.0.xsd
-         http://www.springframework.org/schema/aspect
-         http://www.springframework.org/schema/context/spring-aspect-3.0.xsd
-         http://www.springframework.org/schema/aop
-         http://www.springframework.org/schema/context/spring-aop-3.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<property name="maxIdle" value="${redis.maxIdle}" />
-		<property name="maxActive" value="${redis.maxActive}" />
-		<property name="maxWait" value="${redis.maxWait}" />
-		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
-	</bean>
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" />
 
-	<bean id="connectionFactory"
-		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"
-		p:pool-config-ref="poolConfig" />
-
-	<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-		<property name="connectionFactory" ref="connectionFactory" />
+	<!-- 操作模板 -->
+	<bean id="jedisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		</property>
 	</bean>
 </beans>

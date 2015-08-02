@@ -17,6 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.hash.DecoratingStringHashMapper;
+import org.springframework.data.redis.hash.HashMapper;
+import org.springframework.data.redis.hash.JacksonHashMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -38,11 +41,14 @@ import com.linklife.domain.model.NuistSuggestModel;
 import com.linklife.domain.model.NuistTradeModel;
 import com.linklife.domain.model.RechargeModel;
 import com.linklife.domain.model.StatisticData;
+import com.linklife.obj.Redisobj;
+import com.linklife.redis.TestJedis;
 import com.linklife.web.base.utils.Base64;
 import com.linklife.web.base.utils.RegexUtil;
 import com.linklife.web.httpapi.CookieTool;
 import com.linklife.web.httpapi.HttpUtils;
 import com.linklife.web.httpapi.NuistCardAPI;
+import com.sun.javafx.collections.MappingChange.Map;
 
 /**
  * <p>
@@ -61,8 +67,8 @@ public class NuistServiceImpl {
 	/** 用户领域类 */
 	@Autowired
 	private Nuist nuist;
-
-
+	@Autowired
+	private TestJedis testJedis;
 	/**
 	 * 历史账单类型枚举
 	 * 
@@ -852,24 +858,28 @@ public class NuistServiceImpl {
 		NuistTradeModel nuistTradeModel = new NuistTradeModel();
 		nuistTradeModel.mockRepository( nuist.getNuistTradeModel().acquiredTargetRepository() );
 		// 统计状态
-		StatisticData.people = nuistTradeModel.query4People();
-		StatisticData.dataSize = nuistTradeModel.query4DataSize();
+//		StatisticData.people = nuistTradeModel.query4People();
+//		StatisticData.dataSize = nuistTradeModel.query4DataSize();
 		// 排行数据
 		// StatisticData.eastRank = nuistTradeModel.query4EastRank();
 		// StatisticData.centerRank = nuistTradeModel.query4CenterRank();
 		// StatisticData.westRank = nuistTradeModel.query4WestRank();
 		StatisticData.eastAmountRank = nuistTradeModel.query4EastAmountRank();
-		StatisticData.eastPopularityRank = nuistTradeModel.query4EastPopularityRank();
-		StatisticData.eastPerConsumeRank = nuistTradeModel.query4EastPerConsumeRank();
-		StatisticData.eastCostMostRank = nuistTradeModel.query4EastCostMostRank();
-		StatisticData.westAmountRank = nuistTradeModel.query4WestAmountRank();
-		StatisticData.westPopularityRank = nuistTradeModel.query4WestPopularityRank();
-		StatisticData.westPerConsumeRank = nuistTradeModel.query4WestPerConsumeRank();
-		StatisticData.westCostMostRank = nuistTradeModel.query4WestCostMostRank();
-		StatisticData.centerPerConsumeRank = nuistTradeModel.query4CenterPerConsumeRank();
-		StatisticData.centerAmountRank = nuistTradeModel.query4CenterAmountRank();
-		StatisticData.centerCostMostRank = nuistTradeModel.query4CenterCostMostRank();
-		StatisticData.centerPopularityRank = nuistTradeModel.query4CenterPopularityRank();
+//		StatisticData.eastPopularityRank = nuistTradeModel.query4EastPopularityRank();
+//		StatisticData.eastPerConsumeRank = nuistTradeModel.query4EastPerConsumeRank();
+//		StatisticData.eastCostMostRank = nuistTradeModel.query4EastCostMostRank();
+//		StatisticData.westAmountRank = nuistTradeModel.query4WestAmountRank();
+//		StatisticData.westPopularityRank = nuistTradeModel.query4WestPopularityRank();
+//		StatisticData.westPerConsumeRank = nuistTradeModel.query4WestPerConsumeRank();
+//		StatisticData.westCostMostRank = nuistTradeModel.query4WestCostMostRank();
+//		StatisticData.centerPerConsumeRank = nuistTradeModel.query4CenterPerConsumeRank();
+//		StatisticData.centerAmountRank = nuistTradeModel.query4CenterAmountRank();
+//		StatisticData.centerCostMostRank = nuistTradeModel.query4CenterCostMostRank();
+//		StatisticData.centerPopularityRank = nuistTradeModel.query4CenterPopularityRank();
+		
+		
+		//redis存储统计数据
+		
 	}
 
 
@@ -1111,4 +1121,20 @@ public class NuistServiceImpl {
 
 	}
 
+	public void test() {
+		Redisobj obj=new Redisobj();
+		obj.setName("asdasd");
+		obj.setPassword("csp071121124");
+		
+		testJedis.test(obj);
+//		System.out.println(map.toString());
+//		Class<Redisobj> entityClass = (Class<Redisobj>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];  
+//		HashMapper<Redisobj, String, String> entityMapper = new DecoratingStringHashMapper<Redisobj>(entityMapper); 
+//		entityMapper.toHash(obj);
+		testJedis.saveRedis(obj);
+		Redisobj obj2=testJedis.getRedis("asdasd");
+		System.out.println(obj2.getPassword());
+	}
+	
+	
 }
