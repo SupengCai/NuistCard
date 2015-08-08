@@ -1,7 +1,5 @@
 package com.linklife.redis;
 
-import java.io.Serializable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -16,7 +14,7 @@ import com.linklife.obj.Redisobj;
 public class NuistRedis {
 
 	@Autowired
-	protected RedisTemplate<Serializable, Serializable> redisTemplate;
+	protected RedisTemplate redisTemplate;
 
 	public enum StaticArea {
 		EAST, CENTER, WEST

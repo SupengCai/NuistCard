@@ -858,24 +858,24 @@ public class NuistServiceImpl {
 		NuistTradeModel nuistTradeModel = new NuistTradeModel();
 		nuistTradeModel.mockRepository( nuist.getNuistTradeModel().acquiredTargetRepository() );
 		// 统计状态
-//		StatisticData.people = nuistTradeModel.query4People();
-//		StatisticData.dataSize = nuistTradeModel.query4DataSize();
+		StatisticData.people = nuistTradeModel.query4People();
+		StatisticData.dataSize = nuistTradeModel.query4DataSize();
 		// 排行数据
 		// StatisticData.eastRank = nuistTradeModel.query4EastRank();
 		// StatisticData.centerRank = nuistTradeModel.query4CenterRank();
 		// StatisticData.westRank = nuistTradeModel.query4WestRank();
 		StatisticData.eastAmountRank = nuistTradeModel.query4EastAmountRank();
-//		StatisticData.eastPopularityRank = nuistTradeModel.query4EastPopularityRank();
-//		StatisticData.eastPerConsumeRank = nuistTradeModel.query4EastPerConsumeRank();
-//		StatisticData.eastCostMostRank = nuistTradeModel.query4EastCostMostRank();
-//		StatisticData.westAmountRank = nuistTradeModel.query4WestAmountRank();
-//		StatisticData.westPopularityRank = nuistTradeModel.query4WestPopularityRank();
-//		StatisticData.westPerConsumeRank = nuistTradeModel.query4WestPerConsumeRank();
-//		StatisticData.westCostMostRank = nuistTradeModel.query4WestCostMostRank();
-//		StatisticData.centerPerConsumeRank = nuistTradeModel.query4CenterPerConsumeRank();
-//		StatisticData.centerAmountRank = nuistTradeModel.query4CenterAmountRank();
-//		StatisticData.centerCostMostRank = nuistTradeModel.query4CenterCostMostRank();
-//		StatisticData.centerPopularityRank = nuistTradeModel.query4CenterPopularityRank();
+		StatisticData.eastPopularityRank = nuistTradeModel.query4EastPopularityRank();
+		StatisticData.eastPerConsumeRank = nuistTradeModel.query4EastPerConsumeRank();
+		StatisticData.eastCostMostRank = nuistTradeModel.query4EastCostMostRank();
+		StatisticData.westAmountRank = nuistTradeModel.query4WestAmountRank();
+		StatisticData.westPopularityRank = nuistTradeModel.query4WestPopularityRank();
+		StatisticData.westPerConsumeRank = nuistTradeModel.query4WestPerConsumeRank();
+		StatisticData.westCostMostRank = nuistTradeModel.query4WestCostMostRank();
+		StatisticData.centerPerConsumeRank = nuistTradeModel.query4CenterPerConsumeRank();
+		StatisticData.centerAmountRank = nuistTradeModel.query4CenterAmountRank();
+		StatisticData.centerCostMostRank = nuistTradeModel.query4CenterCostMostRank();
+		StatisticData.centerPopularityRank = nuistTradeModel.query4CenterPopularityRank();
 		
 		
 		//redis存储统计数据
@@ -1131,9 +1131,9 @@ public class NuistServiceImpl {
 //		Class<Redisobj> entityClass = (Class<Redisobj>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];  
 //		HashMapper<Redisobj, String, String> entityMapper = new DecoratingStringHashMapper<Redisobj>(entityMapper); 
 //		entityMapper.toHash(obj);
-		testJedis.saveRedis(obj);
-		Redisobj obj2=testJedis.getRedis("asdasd");
-		System.out.println(obj2.getPassword());
+//		testJedis.saveRedis(obj);
+//		Redisobj obj2=testJedis.getRedis("asdasd");
+//		System.out.println(obj2.getPassword());
 	}
 	
 	

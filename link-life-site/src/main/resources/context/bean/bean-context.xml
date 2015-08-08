@@ -12,8 +12,8 @@
          http://www.springframework.org/schema/context/spring-aop-3.0.xsd
          http://www.springframework.org/schema/util
          http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-	<util:properties id="contextProperties"
-		location="classpath:/context/properties/context.properties" />
+	<!-- <util:properties id="contextProperties"
+		location="classpath:/context/properties/context.properties" /> -->
 	<context:component-scan base-package="com.linklife.service.impl" />
 	<context:component-scan base-package="com.linklife.domain" />
 	<context:component-scan base-package="com.linklife.repository.base" />
